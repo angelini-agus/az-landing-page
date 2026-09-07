@@ -10,15 +10,10 @@ import CtaRampButton from './ui/CtaRampButton.astro';
 const ctaHref = '#contacto';
 ---
 
-<section id="inicio" class="relative overflow-hidden bg-bg-claro">
+<section id="inicio" class="relative overflow-hidden bg-bg-claro h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex flex-col justify-start lg:h-auto lg:min-h-0 lg:max-h-none lg:block">
   <!-- Decorative bubbles: white/gray, blurred, never brand-tinted.
-       Small set, kept away from the text column. -->
+       Kept on desktop; hidden on mobile to avoid competing with the real photo background. -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute inset-0 lg:hidden">
-      <Bubble size={160} top={-6} left={-10} blur={45} opacity={0.6} tone="gray" duration={6} delay={0} />
-      <Bubble size={100} top={20} left={80} blur={35} opacity={0.5} tone="light" duration={5} delay={0.8} />
-      <Bubble size={60} top={70} left={-4} blur={25} opacity={0.5} tone="light" duration={5.5} delay={0.4} />
-    </div>
     <div class="absolute inset-0 hidden lg:block">
       <Bubble size={380} top={-16} left={55} blur={70} opacity={0.6} tone="gray" duration={6} delay={0} />
       <Bubble size={200} top={55} left={-6} blur={55} opacity={0.5} tone="light" duration={5.5} delay={0.6} />
@@ -26,24 +21,46 @@ const ctaHref = '#contacto';
     </div>
   </div>
 
-  <div class="container-page relative">
-    <!-- Top row container: occupies the first 55vh on desktop, centered vertically between navbar and photo -->
+  <div class="container-page relative flex flex-1 flex-col justify-start lg:block">
+    <!-- Hero card container:
+         Mobile: contained rounded card with photo background, strictly calculated against 100dvh, navbar, and safe area.
+         Desktop: transparent top row occupying 55vh, with photo band below. -->
     <div
-      class="flex min-h-[100svh] flex-col justify-center pt-28 pb-10 lg:h-[55vh] lg:min-h-[55vh] lg:justify-center lg:pt-20 lg:pb-0"
+      class="hero-card-mobile relative overflow-hidden rounded-[28px] sm:rounded-3xl border border-lila-suave/40 bg-[#161224] shadow-xl lg:mt-0 lg:mb-0 lg:h-[55vh] lg:min-h-[55vh] lg:justify-center lg:overflow-visible lg:rounded-none lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none flex flex-col justify-end lg:pt-20 lg:pb-0"
     >
+      <!-- Background photo on mobile (contained inside the rounded card) -->
+      <div class="absolute inset-0 z-0 lg:hidden pointer-events-none">
+        <Image
+          src={heroImg}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-[73%_center]"
+          widths={[640, 800, 1080]}
+          sizes="(max-width: 1024px) 100vw, 1px"
+          quality={88}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <!-- Scrim gradient: dark navy/violet with high opacity where text sits, feathering to translucent at the top to let the team photo shine -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-[#141020]/98 via-[#181326]/90 via-55% to-[#181326]/20"
+          aria-hidden="true"
+        ></div>
+      </div>
+
       <div
-        class="flex flex-col gap-10 lg:grid lg:grid-cols-[1.2fr_auto_auto] lg:items-stretch lg:gap-16"
+        class="relative z-10 flex flex-col justify-end gap-3.5 sm:gap-5 p-5 pb-6 sm:p-7 sm:pb-8 lg:p-0 lg:grid lg:grid-cols-[1.2fr_auto_auto] lg:items-stretch lg:gap-16"
       >
         <!-- Giant headline -->
-        <h1 class="font-display text-5xl font-semibold leading-[0.98] tracking-[-0.01em] text-indigo-texto sm:text-6xl lg:text-[7.5rem]">
+        <h1 class="order-2 lg:order-none font-display text-3xl sm:text-4xl lg:text-[7.5rem] font-semibold leading-[1.04] lg:leading-[0.98] tracking-[-0.01em] text-white lg:text-indigo-texto">
           Espacios
           <br />
           impecables
         </h1>
 
         <!-- Stat pills (confirmed client metrics) -->
-        <div class="flex flex-col items-start justify-end gap-4 lg:min-w-fit">
-          <span class="inline-flex h-16 items-center gap-3.5 rounded-2xl bg-lila-pastel px-5">
+        <div class="order-1 lg:order-none flex flex-row flex-wrap items-center gap-2.5 sm:gap-3 lg:flex-col lg:items-start lg:gap-4 lg:min-w-fit">
+          <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-white/95 lg:bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs backdrop-blur-md border border-white/60 lg:border-lila-suave/30">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -51,7 +68,7 @@ const ctaHref = '#contacto';
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="h-5 w-5 text-lila-medio"
+              class="h-4 w-4 lg:h-5 lg:w-5 text-lila-medio"
               aria-hidden="true"
             >
               <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
@@ -63,12 +80,12 @@ const ctaHref = '#contacto';
               <path d="M10 18h4" />
             </svg>
             <span class="flex flex-col leading-tight">
-              <span class="font-display text-lg font-bold text-violeta-osc">50+</span>
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-violeta-osc">edificios cubiertos</span>
+              <span class="font-display text-sm sm:text-base lg:text-lg font-bold text-violeta-osc">50+</span>
+              <span class="text-[9px] sm:text-[10px] lg:text-[11px] font-semibold uppercase tracking-wider text-violeta-osc">edificios cubiertos</span>
             </span>
           </span>
 
-          <span class="inline-flex h-16 items-center gap-3.5 rounded-2xl bg-lila-pastel px-5">
+          <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-white/95 lg:bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs backdrop-blur-md border border-white/60 lg:border-lila-suave/30">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -76,7 +93,7 @@ const ctaHref = '#contacto';
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="h-5 w-5 text-lila-medio"
+              class="h-4 w-4 lg:h-5 lg:w-5 text-lila-medio"
               aria-hidden="true"
             >
               <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
@@ -85,15 +102,15 @@ const ctaHref = '#contacto';
               <path d="M16 16h5v5" />
             </svg>
             <span class="flex flex-col leading-tight">
-              <span class="font-display text-lg font-bold text-violeta-osc">98%</span>
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-violeta-osc">de renovación de clientes</span>
+              <span class="font-display text-sm sm:text-base lg:text-lg font-bold text-violeta-osc">98%</span>
+              <span class="text-[9px] sm:text-[10px] lg:text-[11px] font-semibold uppercase tracking-wider text-violeta-osc">de renovación de clientes</span>
             </span>
           </span>
         </div>
 
         <!-- Copy + CTA -->
-        <div class="flex w-full max-w-sm flex-col justify-end gap-4 lg:gap-6">
-          <p class="text-base leading-relaxed text-texto-secundario">
+        <div class="order-3 lg:order-none flex w-full max-w-sm flex-col justify-end gap-3 sm:gap-4 lg:gap-6">
+          <p class="text-xs sm:text-sm lg:text-base leading-relaxed text-white/90 lg:text-indigo-texto/85 font-normal lg:font-medium">
             Equipo propio, turnos controlados por QR y GPS. Presupuesto personalizado en menos de 72 hs.
           </p>
           <CtaRampButton href={ctaHref} class="w-full sm:w-auto">
@@ -103,8 +120,8 @@ const ctaHref = '#contacto';
       </div>
     </div>
 
-    <!-- Photo band: full-width, begins after 55vh, height 77.77vh -->
-    <div class="relative pb-16 lg:pb-24">
+    <!-- Photo band: full-width, begins after 55vh, height 77.77vh (desktop only) -->
+    <div class="relative hidden pb-16 lg:block lg:pb-24">
       <div
         class="relative mx-auto h-[60vh] sm:h-[70vh] lg:h-[77.77vh] w-full overflow-hidden rounded-3xl bg-lila-suave/25 shadow-2xl lg:rounded-[36px]"
       >
@@ -122,3 +139,19 @@ const ctaHref = '#contacto';
     </div>
   </div>
 </section>
+
+<style>
+  .hero-card-mobile {
+    margin-top: var(--navbar-total-space, 72px);
+    margin-bottom: var(--navbar-total-space, 72px);
+    height: var(--hero-card-height-mobile, calc(100dvh - (var(--navbar-total-space, 72px) * 2)));
+  }
+
+  @media (min-width: 1024px) {
+    .hero-card-mobile {
+      margin-top: 0;
+      margin-bottom: 0;
+      height: 55vh;
+    }
+  }
+</style>

@@ -18,11 +18,11 @@ const {
   id="contacto"
   class="relative min-h-[calc(100vh-5.5rem)] flex flex-col justify-center overflow-visible bg-bg-claro py-8 lg:py-12"
 >
-  <!-- Top Photo Banner (SVG aurora gradient background in violet palette) -->
-  <div class="relative mx-auto w-full px-2 sm:px-4 lg:px-6 pt-6 sm:pt-8 lg:pt-10">
+  <div class="relative mx-auto w-full px-2 sm:px-4 lg:px-6 pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 lg:pb-0">
+    <!-- Top Photo Banner (SVG aurora gradient background in violet palette) -->
     <div
       data-contact-banner
-      class="relative h-[384px] w-full overflow-hidden rounded-[2.5rem] bg-[#140F22] shadow-xl sm:h-[456px] lg:h-[528px]"
+      class="absolute inset-x-2 sm:inset-x-4 top-6 sm:top-8 bottom-0 overflow-hidden rounded-[2.5rem] bg-[#140F22] shadow-xl lg:static lg:inset-auto lg:h-[528px] lg:w-full"
     >
       <!-- SVG Aurora Background -->
       <img
@@ -40,14 +40,13 @@ const {
         <Bubble size={240} top={20} left={85} blur={50} opacity={0.3} tone="gray" duration={7} delay={1} />
       </div>
     </div>
-  </div>
 
-  <!-- Glassmorphic Overlapping Contact Card -->
-  <div class="container-page relative -mt-[272px] sm:-mt-[332px] lg:-mt-[376px] z-10">
-    <div
-      data-reveal
-      class="relative mx-auto max-w-3xl rounded-[2.5rem] border border-white/80 bg-[#FAF8FE]/90 p-6 sm:p-10 lg:p-14 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white"
-    >
+    <!-- Glassmorphic Overlapping Contact Card -->
+    <div class="container-page relative z-10 pt-10 sm:pt-14 lg:pt-0 lg:-mt-[376px]">
+      <div
+        data-reveal
+        class="relative mx-auto max-w-3xl rounded-[2.5rem] border border-white/80 bg-[#FAF8FE]/90 p-6 sm:p-10 lg:p-14 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white"
+      >
       <!-- Stepper Progress Header -->
       <div class="mb-6 sm:mb-8" id="form-stepper" aria-label="Progreso del formulario">
         <div class="flex items-center justify-between gap-2 max-w-xs mx-auto">
@@ -111,7 +110,7 @@ const {
         <div id="form-error-live" aria-live="polite" role="status" class="sr-only"></div>
 
         <!-- Carousel Step Wrapper -->
-        <div class="relative overflow-hidden min-h-[320px] transition-[height] duration-300 ease-out" id="steps-container">
+        <div class="relative overflow-clip min-h-[320px] transition-[height] duration-300 ease-out" id="steps-container">
 
           <!-- ========================================================= -->
           <!-- PASO 1: Selección de tipo de espacio                      -->
@@ -444,6 +443,7 @@ const {
       </form>
     </div>
   </div>
+  </div>
 </section>
 
 <script>
@@ -611,6 +611,7 @@ const {
     if (targetStep < 1 || targetStep > totalSteps || targetStep === currentStep) return;
 
     clearFieldErrors();
+    if (stepsContainer) stepsContainer.scrollLeft = 0;
     const goingForward = targetStep > currentStep;
     const currentPanel = panels[currentStep - 1];
     const nextPanel = panels[targetStep - 1];
@@ -646,6 +647,7 @@ const {
       nextPanel.classList.remove('-translate-x-8', 'translate-x-8');
       nextPanel.classList.add('translate-x-0', 'opacity-100');
 
+      if (stepsContainer) stepsContainer.scrollLeft = 0;
       currentStep = targetStep;
       updateStepperUI(currentStep);
       updateContainerHeight(nextPanel);
@@ -655,12 +657,12 @@ const {
         populateSummary();
       }
 
-      // Focus first input of the new step for accessibility
+      // Focus first input of the new step for accessibility without scrolling parent container
       if (currentStep === 2) {
-        inputNombre?.focus();
+        inputNombre?.focus({ preventScroll: true });
       } else if (currentStep === 3) {
         const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
-        submitBtn?.focus();
+        submitBtn?.focus({ preventScroll: true });
       }
     });
   }
@@ -723,7 +725,7 @@ const {
 
     if (errors.length > 0) {
       const firstError = form?.querySelector('[aria-invalid="true"]') as HTMLElement | null;
-      firstError?.focus();
+      firstError?.focus({ preventScroll: true });
       if (errorLive) errorLive.textContent = 'Revisá los campos marcados en el formulario.';
       return false;
     }
@@ -790,7 +792,7 @@ const {
         if (fieldEl) showFieldError(fieldEl, err.message);
       }
       const firstError = form?.querySelector('[aria-invalid="true"]') as HTMLElement | null;
-      firstError?.focus();
+      firstError?.focus({ preventScroll: true });
       if (errorLive) errorLive.textContent = 'Revisá los campos marcados en el formulario.';
       return;
     }
@@ -813,8 +815,9 @@ const {
     if (successPanel) {
       successPanel.classList.remove('absolute', 'pointer-events-none', 'translate-x-8');
       successPanel.classList.add('opacity-100', 'translate-x-0');
+      if (stepsContainer) stepsContainer.scrollLeft = 0;
       updateContainerHeight(successPanel);
-      btnResetForm?.focus();
+      btnResetForm?.focus({ preventScroll: true });
     }
   });
 
@@ -836,15 +839,31 @@ const {
     }
 
     currentStep = 1;
-    panels[0]?.classList.remove('absolute', 'inset-0', 'pointer-events-none', '-translate-x-8', 'translate-x-8');
-    panels[0]?.classList.add('opacity-100', 'translate-x-0');
+    if (stepsContainer) stepsContainer.scrollLeft = 0;
+    panels.forEach((p, idx) => {
+      if (idx === 0) {
+        p?.classList.remove('absolute', 'inset-0', 'pointer-events-none', '-translate-x-8', 'translate-x-8');
+        p?.classList.add('opacity-100', 'translate-x-0');
+      } else {
+        p?.classList.add('absolute', 'inset-0', 'pointer-events-none', 'opacity-0', 'translate-x-8');
+        p?.classList.remove('opacity-100', 'translate-x-0', '-translate-x-8');
+      }
+    });
     updateStepperUI(1);
     updateContainerHeight(panels[0]);
+  });
+
+  // Ensure the carousel container never maintains horizontal scroll offset
+  stepsContainer?.addEventListener('scroll', () => {
+    if (stepsContainer.scrollLeft !== 0) {
+      stepsContainer.scrollLeft = 0;
+    }
   });
 
   // Window resize handler to maintain responsiveness
   window.addEventListener('resize', () => {
     const activePanel = panels[currentStep - 1];
+    if (stepsContainer) stepsContainer.scrollLeft = 0;
     updateContainerHeight(activePanel);
   });
 

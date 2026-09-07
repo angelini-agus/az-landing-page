@@ -1,6 +1,6 @@
 ---
 // ServicesSection.astro — Interactive B2B services section with sticky stacking cards.
-// In desktop, cards stack and overlap at top-[7rem] (matching navbar offset).
+// Cards stack and overlap (top-20 on mobile, top-28 on desktop matching navbar offset).
 import { Image } from 'astro:assets';
 import consorciosImg from '../assets/servicio-consorcios.jpg';
 import oficinasImg from '../assets/servicio-oficinas.jpg';
@@ -93,8 +93,8 @@ const {
             <div
               data-reveal
               data-reveal-delay={index * 80}
-              class="relative transition-all duration-300 lg:sticky"
-              style={`top: 7rem; z-index: ${zIndex};`}
+              class="sticky top-20 transition-all duration-300 lg:top-28"
+              style={`z-index: ${zIndex};`}
             >
               <article class="group relative overflow-hidden rounded-[28px] border border-lila-suave/45 bg-[#FAF8FE] p-5 shadow-lg transition-all duration-300 hover:border-lila-medio/60 hover:shadow-2xl sm:p-6 lg:h-[calc((100vh-9rem)/2)] lg:min-h-[360px] lg:max-h-[420px] lg:rounded-[36px] lg:p-7">
                 <div class="flex h-full flex-col gap-6 sm:flex-row sm:items-center sm:justify-between lg:gap-10">

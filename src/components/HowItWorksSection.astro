@@ -23,11 +23,11 @@ const rampRightPath =
   <!-- Full-width ramp wrapper spanning across the viewport -->
   <div class="w-full px-2 sm:px-4 lg:px-6">
     <div
-      class="relative w-full overflow-hidden px-6 pt-20 pb-16 sm:px-10 sm:pt-24 sm:pb-20 lg:px-16 lg:pt-28 lg:pb-24"
+      class="relative w-full overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-violeta-osc px-6 pt-16 pb-16 sm:px-10 sm:pt-20 sm:pb-20 lg:rounded-none lg:bg-transparent lg:px-16 lg:pt-28 lg:pb-24"
     >
-      <!-- Asymmetric ramp SVG background: left higher, sloping down to the right -->
+      <!-- Asymmetric ramp SVG background: left higher, sloping down to the right (desktop only) -->
       <svg
-        class="pointer-events-none absolute inset-0 z-0 h-full w-full"
+        class="pointer-events-none absolute inset-0 z-0 hidden h-full w-full lg:block"
         viewBox="0 0 1440 600"
         preserveAspectRatio="none"
         aria-hidden="true"
