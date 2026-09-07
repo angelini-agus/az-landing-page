@@ -37,7 +37,7 @@ test('404: una ruta inexistente muestra la página propia, no el default', async
   const response = await page.goto('/ruta-que-no-existe-xyz');
   expect(response?.status()).toBe(404);
   await expect(page.locator('h1')).toContainText('no existe');
-  await expect(page.locator('a[href="/"]')).toContainText('Volver al inicio');
+  await expect(page.locator('main a[href="/"]')).toContainText('Volver al inicio');
 });
 
 test('navbar glass: legible en todos los motores', async ({ page }, testInfo) => {

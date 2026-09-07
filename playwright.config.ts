@@ -7,7 +7,7 @@ export default defineConfig({
   workers: 1,
   reporter: [['list']],
   use: {
-    baseURL: 'http://localhost:4322',
+    baseURL: 'http://localhost:4321',
     trace: 'retain-on-failure',
   },
   projects: [
@@ -25,8 +25,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: process.platform === 'win32' ? 'npm.cmd run preview -- --port 4322' : 'npm run preview -- --port 4322',
-    url: 'http://localhost:4322',
+    command: process.platform === 'win32' ? 'npm.cmd run preview -- --port 4321' : 'npm run preview -- --port 4321',
+    url: 'http://localhost:4321',
     reuseExistingServer: true,
     timeout: 60_000,
   },

@@ -34,136 +34,110 @@ métricas, testimonios ni datos no confirmados por el cliente.
 **Fórmula aplicada:** Resultado final deseado + sin la fricción principal.
 
 > ## Espacios impecables
-> ### Equipo propio, asistencia controlada por QR y GPS, y un solo mail para resolverlo.
+> ### Equipo propio, turnos controlados por QR y GPS. Coordinás todo por un solo mail.
 
-**CTA:** `Pedí tu diagnóstico por mail →` *(abre el form de contacto, no un teléfono)*
+**CTA:** `Pedí tu presupuesto por mail →` *(abre el form de contacto, no un teléfono)*
 
-**Layout (referencia Freshify, aprox. 200vh):** H1 gigante 2 líneas a la izquierda + 2 stat-pills (turq-pastel, ícono + valor bold violeta-osc + label chico) + columna copy/CTA a la derecha; debajo, foto ancho completo (acento central del hero, ~120vh) con esquinas redondeadas, SIN card de vidrio. Sin blancos: todo sobre bg-lila. La sección "01 // Who We Are" de la referencia (cards 500+/Equipo asegurado) pertenece al Social Proof, no al hero.
+**Layout (referencia Freshify, aprox. 200vh):** H1 gigante 2 líneas a la izquierda + 2 stat-pills (turq-pastel, ícono + valor bold violeta-osc + label chico) + columna copy/CTA a la derecha; debajo, foto ancho completo (acento central del hero, ~120vh) con esquinas redondeadas, SIN card de vidrio. Sin blancos: todo sobre bg-lila.
 
-**Elementos de apoyo debajo del hero:**
-- Métrica destacada: **"Asistencia controlada con QR y GPS en cada turno"** — no dependés de que "alguien avise" si faltó personal.
-- Segunda métrica: **"Sistema propio de gestión (ServiceTrack)"** — la misma tecnología que usamos para operar, no un Excel improvisado.
-- Visual: foto real del equipo trabajando en un edificio/oficina real (nada de stock).
-
----
-
-## 2. Social Proof (solo métricas, sin testimonios)
-
-**Título de sección:** `Cómo trabajamos, en números`
-
-| Métrica | Descripción |
-|---|---|
-| **50+** | Edificios, oficinas y clínicas atendidos actualmente. |
-| **98%** | Tasa de renovación y continuidad de clientes que eligen seguir con AZ. |
-| **95%** | Reducción de errores administrativos internos desde que automatizamos la gestión de personal y liquidaciones. |
-| **QR + GPS** | Cada turno de limpieza queda registrado — sabés quién estuvo, cuándo entró y cuándo salió. |
-
-*(Si más adelante consiguen 2-3 comentarios reales de administradores de consorcio o de alguna clínica, se puede sumar una franja chica de cita textual debajo — sin armar una sección de reseñas completa.)*
+**Pills de estadísticas:**
+- 50+ edificios cubiertos
+- 98% de renovación de clientes
 
 ---
 
-## 3. Problem Statement
+## 2. Quiénes somos / Social Proof
+
+**Eyebrow:** `01 // Quiénes somos`
+
+**Título de sección:** `Limpieza con control real, turno por turno`
+
+**Cuerpo:**
+Pensado para administradores de consorcios, oficinas y clínicas que necesitan saber qué pasó, no solo confiar en que pasó. Cada turno queda registrado con QR y GPS: no hace falta que un vecino o un empleado te avise si faltó alguien. El equipo es propio y los protocolos están documentados.
+
+**Pills flotantes sobre imagen:**
+- Equipo propio asegurado / Personal de AZ, no tercerizado
+- Trazabilidad total / Cada turno, registrado con QR y GPS
+
+---
+
+## 3. Servicios
+
+**Eyebrow:** `02 // Nuestros servicios`
+
+**Título:** `Limpieza pensada para tu tipo de espacio`
+
+1. **Limpieza de Oficinas y Empresas:** Programamos la limpieza según el ritmo de tu equipo: mantenimiento de puestos de trabajo, salas de reunión, office y sanitarios sin frenar tu jornada.
+2. **Limpieza de Consorcios y Edificios:** Mantenimiento integral de áreas comunes: halls, escaleras, ascensores y cocheras. Cada turno queda registrado con QR y GPS.
+3. **Clínicas y Centros de Salud:** Protocolos de desinfección e higiene para consultorios, salas de espera y áreas sensibles, con personal propio capacitado y reporte de cada turno.
+
+---
+
+## 4. Problem Statement
+
+**Eyebrow:** `03 // El problema`
 
 **Fórmula aplicada:** Mostrar el problema + hacer sentir su costo real.
 
-> ## Contratás una empresa de limpieza y terminás gestionándola vos.
+> ## Contratás una empresa de limpieza y terminás gestionándola vos
 >
-> El personal falta y te enterás por un vecino que se quejó. No sabés si limpiaron los baños del segundo piso o solo pasaron por el hall. Cambiás de proveedor cada seis meses porque el anterior "dejó de responder". Y en una clínica, eso no es solo una queja — es un problema de bioseguridad.
+> El personal falta y te enterás por un vecino que se quejó. No sabés si limpiaron los baños del segundo piso o solo pasaron por el hall. Cambiás de proveedor cada seis meses porque el anterior "dejó de responder". En una clínica, eso deja de ser una queja: se convierte en un problema de bioseguridad.
 
 **Sub-bloque (filtro de nicho — "¿es para mí?"):**
-- Sos administrador de consorcio y no tenés forma de comprobar si el turno se cumplió.
-- Gestionás una oficina y la limpieza depende de que "alguien se acuerde" de avisar si faltó personal.
-- Dirigís una clínica y necesitás protocolos de higiene documentados, no una promesa verbal.
+- **Consorcios:** Administrás un consorcio y no tenés cómo comprobar si el turno se cumplió.
+- **Oficinas:** Gestionás una oficina y la limpieza depende de que "alguien se acuerde" de avisar si faltó personal.
+- **Clínicas:** Dirigís una clínica y necesitás protocolos de higiene documentados, no una promesa verbal.
 
 ---
 
-## 4. Solution / Value
+## 5. Solution / Value
 
-**Título de sección:** `Un servicio con el mismo nivel de control que exigís vos`
+**Eyebrow:** `04 // Por qué elegirnos`
 
-Formato: **[Característica] + [Beneficio concreto] + [visual de soporte]**, 6 features:
+**Título de sección:** `Tanto control como el que vos ya exigís`
 
-1. **Control de asistencia por QR y GPS**
-   Cada ingreso y salida del personal queda registrado con ubicación y horario. Vos podés pedir el reporte cuando quieras.
-   *(Visual: captura del sistema ServiceTrack mostrando un registro de turno)*
-
-2. **Personal propio, no tercerizado**
-   El equipo que limpia tu edificio es parte de AZ, no una subcontratación de último momento.
-   *(Visual: foto real del equipo)*
-
-3. **Protocolos adaptados por tipo de espacio**
-   Consorcio, oficina y clínica no se limpian igual — ajustamos frecuencia y protocolo según el tipo de espacio y sus normas.
-   *(Visual: checklist visual por rubro)*
-
-4. **Un solo canal de contacto, sin vueltas**
-   Todo arranca por mail. Sin colas de espera telefónica ni "te paso con otro sector".
-   *(Visual: ícono de mail / captura del formulario)*
-
-5. **Reportes de gestión, no promesas verbales**
-   Podés pedir en cualquier momento el detalle de turnos cumplidos, con horarios reales.
-   *(Visual: mockup de reporte)*
-
-6. **Seguimiento post-contratación**
-   Una vez que empezamos, seguimos ajustando frecuencia y protocolo según cómo evoluciona el espacio — no es "firmamos y desaparecemos".
-   *(Visual: ícono de seguimiento/calendario)*
+1. **Control de asistencia por QR y GPS:** Cada ingreso y salida del personal queda registrado con QR y GPS. Pedís el reporte cuando quieras, sin depender de que alguien te avise si faltó alguien.
+2. **Personal propio, no tercerizado:** El equipo que limpia tu espacio es de AZ. Nada de subcontratistas de último momento ni caras nuevas cada semana.
+3. **Protocolos por tipo de espacio:** Ajustamos frecuencia y protocolo según el tipo de espacio, porque un consorcio y una clínica no se limpian igual.
+4. **Reportes de gestión, no promesas verbales:** Pedís el detalle de los turnos cumplidos, con horarios reales, cuando lo necesites. Así sabés qué se hizo y qué no.
 
 ---
 
-## 5. How It Works
+## 6. How It Works
+
+**Eyebrow:** `05 // Cómo funciona`
 
 **Título de sección:** `Así arrancamos, en 3 pasos`
 
-1. **Nos escribís por mail** — Contanos qué tipo de espacio es (consorcio, oficina o clínica) y qué necesitás.
-2. **Evaluamos tu caso** — Si encaja con lo que hacemos, te contactamos por WhatsApp para coordinar una visita.
-3. **Empezamos con seguimiento desde el primer turno** — Con control de asistencia desde el día uno.
-
-**CTA debajo:** `Escribinos a [email de contacto] →`
-
-*(Nota: reemplazar `[email de contacto]` por la casilla real, ej. contacto@azserviciosdelimpieza.com — el dominio azserviciosdelimpieza.com es el sitio, no necesariamente la dirección de mail completa.)*
+1. **Nos escribís por mail** — Contanos qué tipo de espacio tenés (consorcio, oficina o clínica) y qué necesitás resolver.
+2. **Evaluamos tu caso** — Si encaja con lo que hacemos, te escribimos por WhatsApp para coordinar una visita.
+3. **Arrancamos con seguimiento** — Con control de asistencia desde el primer turno.
 
 ---
 
-## 6. FAQ's
+## 7. FAQ's
 
-**¿Atienden hogares particulares?**
-No. Trabajamos exclusivamente con consorcios, oficinas y clínicas.
+**Eyebrow:** `06 // Preguntas frecuentes`
 
-**¿Cómo sé si el personal cumplió el turno?**
-Cada turno se registra con QR y GPS. Podés pedir el reporte de asistencia cuando quieras.
+**Título de sección:** `Preguntas frecuentes`
 
-**¿Puedo llamarlos por teléfono?**
-El contacto inicial es por mail. Una vez que evaluamos tu caso, seguimos la conversación por WhatsApp para coordinar todo más rápido.
-
-**¿El personal es de ustedes o tercerizado?**
-Es equipo propio de AZ.
-
-**¿Trabajan con protocolos específicos para clínicas?**
-Sí, ajustamos frecuencia y protocolo de limpieza según el tipo de espacio y sus requisitos de higiene.
-
-**¿Qué pasa si no estoy conforme con el servicio?**
-Hacemos seguimiento activo después de empezar — ajustamos frecuencia y protocolo según cómo va funcionando, no es un contrato cerrado sin revisión.
+- **¿Atienden hogares particulares?** No. Trabajamos exclusivamente con consorcios, oficinas y clínicas.
+- **¿Cómo sé si el personal cumplió el turno?** Cada turno se registra con QR y GPS, y podés pedir el reporte de asistencia cuando quieras.
+- **¿Puedo llamarlos por teléfono?** El contacto inicial es por mail. Una vez que evaluamos tu caso, seguimos la conversación por WhatsApp para coordinar todo más rápido.
+- **¿El personal es de ustedes o tercerizado?** Es equipo propio de AZ.
+- **¿Trabajan con protocolos específicos para clínicas?** Sí. Ajustamos frecuencia y protocolo de limpieza según el tipo de espacio y sus requisitos de higiene.
+- **¿Qué pasa si no estoy conforme con el servicio?** Hacemos seguimiento activo después de arrancar y ajustamos frecuencia y protocolo según cómo funcione.
 
 ---
 
-## 7. Final CTA & Footer
+## 8. Final CTA & Footer
 
-**Fórmula aplicada:** Titular orientado a beneficio + CTA + footer completo.
+**Eyebrow wizard:** `07 // Contacto`
 
-> ## Dejá de gestionar vos la limpieza de tu edificio, oficina o clínica.
-> ### Escribinos y evaluamos tu caso — si encaja, seguimos por WhatsApp.
+**CTA final:** `Pedí tu presupuesto por mail`
 
-**CTA:** `Pedí tu diagnóstico por mail →`
-
-**Footer — enlaces sugeridos:**
-- Servicios (Consorcios / Oficinas / Clínicas)
-- Cómo trabajamos
-- Contacto (mail)
-- **Acceso institucional** → botón separado, lleva a `azserviciosdelimpieza.com/login` (login del ERP interno, no es parte del funnel comercial)
-- Ubicación / zona de cobertura
-
-**Formulario de contacto (fricción cero):** Nombre, Institución/Edificio, Tipo de espacio (consorcio / oficina / clínica), Email. Sin campo de teléfono en el primer contacto — eso se pide recién si el prospecto califica y pasa a WhatsApp.
-
-**Nota sobre el botón institucional en el navbar:** debería estar visualmente separado del CTA comercial ("Pedí tu diagnóstico") — un link más discreto, tipo texto o botón ghost, con label "Acceso clientes" o "Portal AZ", para que no compita con la conversión principal ni genere confusión sobre qué es cada cosa.
+**Bio de marca:** AZ Limpieza. Servicio de limpieza profesional con equipo propio y asistencia controlada por QR y GPS. (Rosario, Santa Fe).
+- Portal Institucional: Ingreso para el equipo de AZ. — Botón: Acceso empleados (`/login`).
 
 ---
 

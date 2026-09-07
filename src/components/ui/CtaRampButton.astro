@@ -23,7 +23,7 @@ interface Props {
 
 const {
   href,
-  text = 'Pedí tu diagnóstico por mail',
+  text = 'Pedí tu presupuesto por mail',
   variant = 'primary',
   rampDirection = 'left',
   showArrow = true,
@@ -46,7 +46,7 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
     <a
       href={href}
       class:list={[
-        'group isolate relative inline-flex h-16 items-center justify-center px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4',
+        'cta-ramp-button group isolate relative inline-flex h-16 items-center justify-between px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4',
         isYellow
           ? 'text-neutral-900 focus-visible:outline-[#F5D300]'
           : 'text-indigo-texto focus-visible:outline-turq-cta',
@@ -65,22 +65,22 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
         <path d={pathD} />
       </svg>
 
-      <span class="relative z-10 flex items-center gap-2.5">
-        <slot>{text}</slot>
+      <span class="relative z-10 flex w-full items-center justify-between gap-3">
+        <span class="whitespace-nowrap"><slot>{text}</slot></span>
         {showArrow && (
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-            aria-hidden="true"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
+          <span class="cta-arrow-track relative inline-flex h-5 w-16 sm:w-20 shrink-0 items-center justify-center overflow-hidden" aria-hidden="true">
+            <svg
+              viewBox="0 0 32 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="cta-arrow h-4.5 w-8 shrink-0"
+            >
+              <path d="M2 9h26m-10-6c3 2.5 7 4.5 10 6-3 1.5-7 3.5-10 6" />
+            </svg>
+          </span>
         )}
       </span>
     </a>
@@ -88,7 +88,7 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
     <button
       type={type}
       class:list={[
-        'group isolate relative inline-flex h-16 items-center justify-center px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 cursor-pointer',
+        'cta-ramp-button group isolate relative inline-flex h-16 items-center justify-between px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 cursor-pointer',
         isYellow
           ? 'text-neutral-900 focus-visible:outline-[#F5D300]'
           : 'text-indigo-texto focus-visible:outline-turq-cta',
@@ -107,27 +107,50 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
         <path d={pathD} />
       </svg>
 
-      <span class="relative z-10 flex items-center gap-2.5">
-        <slot>{text}</slot>
+      <span class="relative z-10 flex w-full items-center justify-between gap-3">
+        <span class="whitespace-nowrap"><slot>{text}</slot></span>
         {showArrow && (
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-            aria-hidden="true"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
+          <span class="cta-arrow-track relative inline-flex h-5 w-16 sm:w-20 shrink-0 items-center justify-center overflow-hidden" aria-hidden="true">
+            <svg
+              viewBox="0 0 32 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="cta-arrow h-4.5 w-8 shrink-0"
+            >
+              <path d="M2 9h26m-10-6c3 2.5 7 4.5 10 6-3 1.5-7 3.5-10 6" />
+            </svg>
+          </span>
         )}
       </span>
     </button>
   )
 }
+
+<script>
+  function initCtaArrows() {
+    document.querySelectorAll<HTMLElement>('.cta-ramp-button').forEach((btn) => {
+      const arrow = btn.querySelector<HTMLElement>('.cta-arrow');
+      if (!arrow || btn.dataset.arrowReady) return;
+      btn.dataset.arrowReady = 'true';
+
+      btn.addEventListener('mouseenter', () => {
+        arrow.classList.remove('is-animating');
+        void arrow.offsetWidth; // force reflow for smooth re-trigger
+        arrow.classList.add('is-animating');
+      });
+
+      arrow.addEventListener('animationend', () => {
+        arrow.classList.remove('is-animating');
+      });
+    });
+  }
+
+  initCtaArrows();
+  document.addEventListener('astro:page-load', initCtaArrows);
+</script>
 
 <style>
   .cta-ramp-svg--primary {
@@ -156,5 +179,55 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
   .group:hover .cta-ramp-svg--yellow {
     fill: #f8dc20;
     filter: drop-shadow(0 12px 24px rgba(245, 211, 0, 0.45));
+  }
+
+  /* Single-arrow carousel animation ("calesita") */
+  .cta-arrow {
+    will-change: transform, opacity;
+    transform: translateX(0);
+  }
+
+  @keyframes cta-calecita-loop {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.7, 1);
+    }
+    38% {
+      transform: translateX(calc(100% + 56px));
+      opacity: 1;
+    }
+    39% {
+      transform: translateX(calc(100% + 56px));
+      opacity: 0;
+    }
+    43% {
+      transform: translateX(-220%);
+      opacity: 0;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    47% {
+      transform: translateX(-220%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .cta-arrow,
+    .cta-arrow.is-animating {
+      animation: cta-calecita-loop 640ms forwards;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-arrow,
+    .cta-arrow.is-animating {
+      animation: none !important;
+      transform: none !important;
+    }
   }
 </style>

@@ -13,7 +13,7 @@ interface Link {
 const links: Link[] = [
   { href: '#quienes-somos', label: 'Nosotros', icon: 'users' },
   { href: '#servicios', label: 'Servicios', icon: 'services' },
-  { href: '#el-problema', label: 'Te pasó?', icon: 'alert' },
+  { href: '#el-problema', label: '¿Te pasó?', icon: 'alert' },
   { href: '#como-funciona', label: 'Funcionamiento', icon: 'steps' },
   { href: '#faq', label: 'FAQ', icon: 'question' },
 ];
@@ -68,7 +68,7 @@ const contactHref = '#contacto';
 
       <span class="mx-0.5 h-4 w-px bg-lila-suave/40" aria-hidden="true"></span>
 
-      <!-- 5 Buttons in the center in exact requested order: Nosotros, Servicios, Te pasó?, Funcionamiento, FAQ -->
+      <!-- 5 Buttons in the center in exact requested order: Nosotros, Servicios, ¿Te pasó?, Funcionamiento, FAQ -->
       {
         links.map((link) => (
           <a
@@ -136,7 +136,7 @@ const contactHref = '#contacto';
       <a
         data-dock-item
         href={contactHref}
-        aria-label="Escribinos por mail"
+        aria-label="Pedí tu diagnóstico"
         class="group/contact relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lila-medio"
       >
         <svg
@@ -285,7 +285,7 @@ const contactHref = '#contacto';
                 <rect width="20" height="16" x="2" y="4" rx="2" />
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
-              Escribinos
+              Pedí tu diagnóstico
             </span>
           </a>
         </div>

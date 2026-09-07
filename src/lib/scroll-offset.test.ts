@@ -14,16 +14,16 @@ describe('getBaseSectionOffset', () => {
 });
 
 describe('getContactSectionOffset', () => {
-  it('aligns the banner top with the navbar top', () => {
-    expect(getContactSectionOffset({ hasBanner: true, bannerRelativeTop: 300, navbarTop: 24 })).toBe(276);
+  it('aligns the banner top with the navbar top plus 20px depth', () => {
+    expect(getContactSectionOffset({ hasBanner: true, bannerRelativeTop: 300, navbarTop: 24 })).toBe(296);
   });
 
-  it('falls back to +68 when there is no banner', () => {
-    expect(getContactSectionOffset({ hasBanner: false, bannerRelativeTop: 0, navbarTop: 24 })).toBe(68);
+  it('falls back to +88 when there is no banner', () => {
+    expect(getContactSectionOffset({ hasBanner: false, bannerRelativeTop: 0, navbarTop: 24 })).toBe(88);
   });
 
-  it('handles a navbar above the banner (negative offset)', () => {
-    expect(getContactSectionOffset({ hasBanner: true, bannerRelativeTop: 400, navbarTop: 500 })).toBe(-100);
+  it('handles a navbar above the banner (negative offset) plus 20px', () => {
+    expect(getContactSectionOffset({ hasBanner: true, bannerRelativeTop: 400, navbarTop: 500 })).toBe(-80);
   });
 });
 
@@ -36,7 +36,7 @@ describe('resolveSectionOffset', () => {
   it('returns the contact offset for #contacto when contact input is provided', () => {
     expect(
       resolveSectionOffset('#contacto', { hasBanner: true, bannerRelativeTop: 250, navbarTop: 24 }),
-    ).toBe(226);
+    ).toBe(246);
   });
 
   it('returns the base offset for #contacto when no contact input is given', () => {

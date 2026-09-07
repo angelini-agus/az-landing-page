@@ -25,16 +25,10 @@ const rampLeftPath =
 const rampRightPath =
   'M 10 4 L 38 0.5 C 43.5 0.5 47.5 4.5 47.5 10 L 47.5 38 C 47.5 43.5 43.5 47.5 38 47.5 L 10 47.5 C 4.5 47.5 0.5 43.5 0.5 38 L 0.5 14 C 0.5 8 4.5 4 10 4 Z';
 
-const defaultStats: StatItem[] = [
-  { value: '98%', labelTop: 'Renovación', labelBottom: 'de clientes' },
-  { value: '50+', labelTop: 'Edificios, oficinas', labelBottom: 'y clínicas' },
-  { value: '95%', labelTop: 'Menos errores', labelBottom: 'administrativos' },
-];
-
 const {
-  eyebrow = '03 // POR QUÉ ELEGIRNOS',
-  title = 'Un servicio con el mismo nivel de control que exigís vos',
-  stats = defaultStats,
+  eyebrow = '04 // Por qué elegirnos',
+  title = 'Tanto control como el que vos ya exigís',
+  stats,
 } = Astro.props;
 ---
 
@@ -109,8 +103,7 @@ const {
           Control de asistencia por QR y GPS
         </h3>
         <p class="text-center text-sm leading-relaxed text-texto-secundario">
-          No dependés de que "alguien avise" si faltó personal: cada ingreso y
-          salida queda registrado con QR y GPS, y el reporte lo pedís cuando quieras.
+          Cada ingreso y salida del personal queda registrado con QR y GPS. Pedís el reporte cuando quieras, sin depender de que alguien te avise si faltó alguien.
         </p>
       </div>
 
@@ -148,8 +141,7 @@ const {
           Personal propio, no tercerizado
         </h3>
         <p class="text-center text-sm leading-relaxed text-texto-secundario">
-          El equipo que limpia tu edificio es parte de AZ: el mismo personal,
-          no una subcontratación de último momento.
+          El equipo que limpia tu espacio es de AZ. Nada de subcontratistas de último momento ni caras nuevas cada semana.
         </p>
       </div>
 
@@ -187,8 +179,7 @@ const {
           Protocolos por tipo de espacio
         </h3>
         <p class="text-center text-sm leading-relaxed text-texto-secundario">
-          Un consorcio no se limpia igual que una clínica: ajustamos frecuencia
-          y protocolo según el tipo de espacio y sus normas.
+          Ajustamos frecuencia y protocolo según el tipo de espacio, porque un consorcio y una clínica no se limpian igual.
         </p>
       </div>
 
@@ -227,33 +218,33 @@ const {
           Reportes de gestión, no promesas verbales
         </h3>
         <p class="text-center text-sm leading-relaxed text-texto-secundario">
-          Pedí en cualquier momento el detalle de turnos cumplidos, con horarios
-          reales: sabés qué se hizo y qué no.
+          Pedís el detalle de los turnos cumplidos, con horarios reales, cuando lo necesites. Así sabés qué se hizo y qué no.
         </p>
       </div>
 
     </div>
 
-    <!-- 3 Statistics Row below the cards -->
-    <div
-      data-reveal
-      style="--reveal-delay: 450ms"
-      class="mt-20 lg:mt-24 flex flex-wrap items-center justify-center gap-10 sm:gap-16 lg:gap-24"
-    >
-      {
-        stats.map((stat) => (
-          <div class="flex items-center gap-3.5">
-            <span class="font-display text-4xl font-bold tracking-tight text-indigo-texto sm:text-5xl">
-              {stat.value}
-            </span>
-            <span class="flex flex-col text-[11px] font-semibold uppercase tracking-wider text-texto-secundario leading-tight">
-              <span>{stat.labelTop}</span>
-              <span>{stat.labelBottom}</span>
-            </span>
-          </div>
-        ))
-      }
-    </div>
+    {
+      stats && stats.length > 0 && (
+        <div
+          data-reveal
+          style="--reveal-delay: 450ms"
+          class="mt-20 lg:mt-24 flex flex-wrap items-center justify-center gap-10 sm:gap-16 lg:gap-24"
+        >
+          {stats.map((stat) => (
+            <div class="flex items-center gap-3.5">
+              <span class="font-display text-4xl font-bold tracking-tight text-indigo-texto sm:text-5xl">
+                {stat.value}
+              </span>
+              <span class="flex flex-col text-[11px] font-semibold uppercase tracking-wider text-texto-secundario leading-tight">
+                <span>{stat.labelTop}</span>
+                <span>{stat.labelBottom}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      )
+    }
 
   </div>
 </section>
