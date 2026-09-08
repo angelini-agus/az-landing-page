@@ -1,12 +1,12 @@
 # AZ Servicios de Limpieza — Landing Page
 
-Landing page oficial de **AZ Servicios de Limpieza**, empresa especializada en servicios integrales de limpieza y desinfección para consorcios residenciales, oficinas corporativas y centros de salud/clínicas en la ciudad de Rosario, Santa Fe.
+Official landing page for **AZ Servicios de Limpieza**, a commercial cleaning and disinfection company serving residential complexes (condominiums/HOAs), corporate offices, and medical clinics in Rosario, Santa Fe.
 
-El sitio presenta la propuesta de valor de la compañía: personal propio asegurado (sin tercerización), control de turnos mediante trazabilidad QR y geolocalización GPS, y contacto calificado a través de un formulario guiado por pasos.
+The site highlights the company's core value proposition: fully insured internal staff (no third-party subcontractors), real-time shift verification via QR and GPS tracking, and a qualified multi-step contact workflow.
 
 ---
 
-## Capturas del Sitio
+## Site Previews
 
 ### Desktop (1440 × 900)
 ![desktop](docs/screenshots/desktop.png)
@@ -18,77 +18,77 @@ El sitio presenta la propuesta de valor de la compañía: personal propio asegur
 
 ---
 
-## Stack Tecnológico
+## Tech Stack
 
 - **Framework:** [Astro 7](https://astro.build/) (Static Site Generation / SSG).
-- **Lenguaje:** [TypeScript 5](https://www.typescriptlang.org/) (modo estricto).
-- **Estilos y Diseño:** [Tailwind CSS v4](https://tailwindcss.com/) (configuración CSS-first mediante directivas `@theme` en `src/styles/global.css`).
-- **Smooth Scroll:** [Lenis](https://lenis.darkroom.engineering/) para inercia fluida de scroll.
-- **Fuentes:** `@fontsource-variable/parkinsans` (títulos y display) e `@fontsource-variable/inter-tight` (cuerpo y datos).
-- **Testing:** [Vitest](https://vitest.dev/) (unitario/lógica) y [Playwright](https://playwright.dev/) (E2E y regresión visual multi-viewport).
-- **Hosting & CDN:** [Vercel](https://vercel.com/) con rewrites perimetrales hacia el ERP institucional.
+- **Language:** [TypeScript 5](https://www.typescriptlang.org/) (Strict mode).
+- **Styling & Design:** [Tailwind CSS v4](https://tailwindcss.com/) (CSS-first architecture with `@theme` directives in `src/styles/global.css`).
+- **Smooth Scroll:** [Lenis](https://lenis.darkroom.engineering/) for fluid scroll momentum.
+- **Typography:** `@fontsource-variable/parkinsans` (headings and display) and `@fontsource-variable/inter-tight` (body text and data points).
+- **Testing:** [Vitest](https://vitest.dev/) (unit / logic) and [Playwright](https://playwright.dev/) (E2E and multi-viewport visual regression).
+- **Hosting & CDN:** [Vercel](https://vercel.com/) with edge rewrites pointing to the internal ERP.
 
 ---
 
-## Arquitectura del Proyecto
+## Project Architecture
 
-El código fuente se organiza siguiendo una separación limpia de responsabilidades:
+The source code follows a clear separation of concerns:
 
 ```text
 az-landing2/
 ├── docs/
-│   └── screenshots/          # Capturas generadas automáticamente para documentación
-├── public/                   # Archivos estáticos directos (favicons, robots.txt, etc.)
+│   └── screenshots/            # Automated preview screenshots for documentation
+├── public/                     # Static direct assets (favicons, robots.txt, etc.)
 ├── scripts/
-│   └── capture-screenshots.mjs # Script de Playwright para regenerar capturas desktop/mobile
+│   └── capture-screenshots.mjs # Playwright script to regenerate desktop/mobile screenshots
 ├── src/
-│   ├── assets/               # Imágenes optimizadas por Astro (WebP, badges, fotos del equipo)
-│   ├── components/           # Componentes de UI y secciones de la landing
-│   │   ├── ui/               # Componentes atómicos e independientes (botones, burbujas, iconos)
-│   │   └── *.astro           # Secciones modulares de página (Hero, Servicios, Contacto, FAQ, etc.)
-│   ├── content/              # Colecciones de contenido tipadas y datos del sitio (site.json)
-│   ├── layouts/              # Plantillas estructurales (BaseLayout.astro con SEO y cabeceras)
-│   ├── lib/                  # Helpers desacoplados, utilidades de scroll y offsets del dock
-│   ├── pages/                # Rutas estáticas del sitio (index.astro, 404.astro)
-│   └── styles/               # Tokens de diseño y variables globales en global.css
+│   ├── assets/                 # Astro-optimized images (WebP, badges, team photos)
+│   ├── components/             # UI components and landing page sections
+│   │   ├── ui/                 # Atomic, self-contained UI primitives (buttons, bubbles, icons)
+│   │   └── *.astro             # Modular page sections (Hero, Services, Contact, FAQ, etc.)
+│   ├── content/                # Typed content collections and site data (site.json)
+│   ├── layouts/                # Structural layout templates (BaseLayout.astro with SEO and headers)
+│   ├── lib/                    # Decoupled helpers, scroll utilities, and dock offset calculators
+│   ├── pages/                  # File-based static routes (index.astro, 404.astro)
+│   └── styles/                 # Design tokens and global CSS variables in global.css
 ├── tests/
-│   └── e2e/                  # Tests end-to-end, responsive y de consola con Playwright
-├── astro.config.mjs          # Configuración del bundler Astro e integraciones
-├── package.json              # Dependencias y scripts de desarrollo
-└── vercel.json               # Configuración de proxy y rewrites hacia el ERP institucional
+│   └── e2e/                    # End-to-end, responsive, and console error tests with Playwright
+├── astro.config.mjs            # Astro bundler configuration and integrations
+├── package.json                # Project dependencies and development scripts
+└── vercel.json                 # Edge proxy and rewrite configuration for the internal ERP
 ```
 
-### Detalle de Carpetas Principales
+### Key Directory Breakdown
 
-- **`src/content/`**: Datos centralizados y esquemas tipados con Content Collections (`site.json`), fuente de verdad de métricas y textos.
-- **`src/components/ui/`**: Primitivas visuales atómicas sin lógica de negocio (`Button.astro`, `Bubble.astro`, `CtaRampButton.astro`).
-- **`src/components/`**: Secciones compuestas de la landing (`Hero.astro`, `SocialProof.astro`, `ServicesSection.astro`, `ProblemStatement.astro`, `ValueSection.astro`, `HowItWorksSection.astro`, `FaqSection.astro`, `ContactSection.astro`, `Footer.astro`).
-- **`src/lib/`**: Funciones auxiliares puras y algoritmos de posicionamiento de scroll/offsets dinámicos.
-- **`src/layouts/`**: Maquetado base (`BaseLayout.astro`), gestión de metadatos OpenGraph, preloads y contenedor del canvas/smooth scroll.
-- **`src/pages/`**: Enrutador de Astro basado en archivos. Renderiza la home (`/`) y la página de error personalizada (`/404`).
+- **`src/content/`**: Centralized data and typed schemas powered by Astro Content Collections (`site.json`), acting as the single source of truth for copy and metrics.
+- **`src/components/ui/`**: Atomic, presentation-only primitives without business logic (`Button.astro`, `Bubble.astro`, `CtaRampButton.astro`).
+- **`src/components/`**: Composite landing sections (`Hero.astro`, `SocialProof.astro`, `ServicesSection.astro`, `ProblemStatement.astro`, `ValueSection.astro`, `HowItWorksSection.astro`, `FaqSection.astro`, `ContactSection.astro`, `Footer.astro`).
+- **`src/lib/`**: Pure utility functions and dynamic scroll/offset calculations.
+- **`src/layouts/`**: Base HTML skeleton (`BaseLayout.astro`), OpenGraph metadata, resource preloads, and the background canvas/smooth scroll container.
+- **`src/pages/`**: Astro file-based router. Serves the landing homepage (`/`) and a customized error page (`/404`).
 
 ---
 
-## Cómo Correr el Proyecto en Local
+## Local Development
 
-### 1. Prerrequisitos
-- **Node.js**: versión 18.17.0 o superior (recomendado Node 20 LTS o 22).
-- **npm**: versión 9 o superior.
+### 1. Prerequisites
+- **Node.js**: version 18.17.0 or higher (Node 20 LTS or 22 recommended).
+- **npm**: version 9 or higher.
 
-### 2. Instalación de Dependencias
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### 3. Servidor de Desarrollo
+### 3. Start Development Server
 ```bash
 npm run dev
 ```
-Por defecto, Astro iniciará el servidor local en:
+By default, Astro runs the local dev server at:
 👉 **`http://localhost:4321`**
 
-### 4. Build de Producción y Preview
-Para generar el bundle estático y previsualizarlo tal como se servirá en producción:
+### 4. Production Build & Preview
+To build the static distribution bundle and test it locally:
 ```bash
 npm run build
 npm run preview
@@ -96,34 +96,34 @@ npm run preview
 
 ---
 
-## Variables de Entorno
+## Environment Variables
 
-El proyecto cuenta con un archivo de ejemplo `.env.example`. Para entornos locales o despliegues personalizados, se pueden definir las siguientes variables:
+An example configuration file is provided in `.env.example`. For local development or custom deployments, configure the following variables:
 
 ```bash
-# URL canónica para generación de sitemap y metadatos SEO
+# Canonical URL for sitemap generation and OpenGraph SEO metadata
 PUBLIC_SITE_URL=https://www.azserviciosdelimpieza.com
 
-# Integración del formulario de contacto (opcional)
+# Contact form backend integration (optional)
 CONTACT_API_KEY=
 CONTACT_NOTIFICATION_EMAIL=
 ```
 
-> **IMPORTANTE — Seguridad de Credenciales:**  
-> Nunca agregues valores secretos ni comitees archivos `.env` al repositorio. Cualquier credencial o clave de API privada debe configurarse exclusivamente desde el panel de **Vercel** (`Settings → Environment Variables`).
+> **IMPORTANT — Credential Security:**  
+> Never commit secrets or actual `.env` files to the repository. All production credentials and API keys must be managed through **Vercel** (`Settings → Environment Variables`).
 
 ---
 
-## Deploy e Integración con el ERP (Vercel)
+## Deployment & ERP Integration (Vercel)
 
-El sitio se encuentra desplegado en producción en **Vercel** bajo el dominio oficial:
-- [https://azserviciosdelimpieza.com](https://azserviciosdelimpieza.com) (con redirección canónica a `www.azserviciosdelimpieza.com`)
+The site is deployed in production on **Vercel** under the official domain:
+- [https://azserviciosdelimpieza.com](https://azserviciosdelimpieza.com) (with canonical redirect to `www.azserviciosdelimpieza.com`)
 
-### El Rol Crítico de `vercel.json` (Proxy hacia el ERP)
+### The Role of `vercel.json` (ERP Edge Proxy)
 
-En la raíz del proyecto se encuentra el archivo [`vercel.json`](./vercel.json). **Este archivo NO es accidental ni opcional**:
+The repository root includes a [`vercel.json`](./vercel.json) file. **This file is intentional and critical**:
 
-AZ Servicios de Limpieza cuenta con un ERP interno de gestión operativa y control de personal (desarrollado en Angular, repositorio `az-sistema-prod`). Para evitar fragmentar la identidad de marca en múltiples subdominios y facilitar el acceso a clientes y empleados, Vercel actúa como proxy inverso:
+AZ Servicios de Limpieza maintains an internal operations and personnel management ERP (built with Angular in the `az-sistema-prod` repository). To preserve brand continuity across a single domain rather than fragmenting into subdomains, Vercel functions as a reverse proxy:
 
 ```json
 {
@@ -149,31 +149,31 @@ AZ Servicios de Limpieza cuenta con un ERP interno de gestión operativa y contr
 }
 ```
 
-- Cualquier solicitud a `/login` o `/login/*` es proxeada transparentemente por Vercel hacia la aplicación del ERP.
-- El navbar y el footer de esta landing incluyen el botón institucional **Acceso empleados**, que apunta a `/login`.
-- Si un usuario ya tiene una sesión iniciada en el ERP (`az_erp_session` o `currentUser` en `localStorage`), el layout detecta la sesión y lo redirige automáticamente a su panel de trabajo.
+- Requests to `/login` or `/login/*` are transparently proxied by Vercel to the hosted Angular ERP.
+- Both the navbar and footer include an institutional **Employee Access** button linking directly to `/login`.
+- If a user already has an active ERP session (`az_erp_session` or `currentUser` in `localStorage`), the layout detects it and automatically redirects them to their dashboard.
 
 ---
 
-## Testing y Calidad
+## Testing & Quality Assurance
 
-El proyecto incluye suites completas de testing unitario y end-to-end:
+The repository includes test suites for both unit logic and end-to-end browser flows:
 
-### 1. Tests Unitarios (Vitest)
-Verifican lógica desacoplada y utilidades puras:
+### 1. Unit Tests (Vitest)
+Validates pure utilities and decoupled business logic:
 ```bash
 npm test
 ```
 
-### 2. Tests End-to-End (Playwright)
-Comprueban navegación del navbar dock, validación del formulario multi-paso, ausencia de errores de consola, responsive sin desbordamiento horizontal y alineación en viewports móviles:
+### 2. End-to-End Tests (Playwright)
+Validates dock navigation, multi-step contact form submission, console error detection, horizontal scroll prevention, and mobile viewport alignment:
 ```bash
 npm run test:e2e
 ```
 
-### 3. Generación Automática de Capturas de Pantalla
-Para regenerar las imágenes documentales de desktop y mobile utilizando Playwright:
+### 3. Automated Screenshot Generation
+Regenerates documentation screenshots for desktop and mobile viewports via Playwright:
 ```bash
 npm run screenshots
 ```
-> **Nota:** El script detecta automáticamente si existe un servidor local corriendo en `http://localhost:4321` para capturar los cambios más recientes del repositorio; en caso contrario, apunta al dominio de producción. También admite pasar una URL específica: `npm run screenshots -- http://localhost:4321`.
+> **Note:** The script checks if a local server is running on `http://localhost:4321` to capture the latest uncommitted changes; otherwise, it falls back to the production URL. You can also supply a custom target URL: `npm run screenshots -- http://localhost:4321`.
