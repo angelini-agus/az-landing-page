@@ -2,7 +2,10 @@
 // HowItWorksSection.astro — How It Works (04 // CÓMO FUNCIONA).
 // Full-width block with asymmetric ramp geometry (left side higher, sloping down to the right),
 // filled with violeta-osc, 3 horizontal steps with matching icon shapes and connectors.
+import { Image } from 'astro:assets';
+import bubbleDoubleImg from '../assets/bubble-double.png';
 import Bubble from './ui/Bubble.astro';
+import CleaningHandIcon from './ui/CleaningHandIcon.astro';
 
 // Asymmetric ramp background path for the entire section (left higher, sloping down to the right):
 const sectionRampPath =
@@ -44,6 +47,35 @@ const rampRightPath =
 
       <!-- Inner content constrained to standard container max-width and centered -->
       <div class="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <!-- Floating decorative wiping hand SVG on the left (matches reference layout) -->
+        <div
+          data-reveal
+          class="pointer-events-none absolute hidden lg:block lg:left-6 xl:left-12 lg:top-4 xl:top-6 z-20 select-none"
+          style="--reveal-delay: 100ms"
+          aria-hidden="true"
+        >
+          <div class="animate-float-hand text-lila-suave opacity-90 transition-transform duration-300">
+            <CleaningHandIcon class="lg:h-28 lg:w-28 xl:h-32 xl:w-32 drop-shadow-xs" />
+          </div>
+        </div>
+
+        <!-- Floating decorative double bubble on the right (matches reference layout) -->
+        <div
+          data-reveal
+          class="pointer-events-none absolute hidden lg:block lg:right-10 xl:right-16 lg:-top-2 xl:-top-4 z-20 select-none"
+          style="--reveal-delay: 140ms"
+          aria-hidden="true"
+        >
+          <div class="animate-float-bubble">
+            <Image
+              src={bubbleDoubleImg}
+              alt=""
+              class="lg:h-16 lg:w-16 xl:h-[72px] xl:w-[72px] object-contain drop-shadow-sm"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
         <!-- Header -->
         <div class="mb-14 lg:mb-16 text-center">
           <p
@@ -171,3 +203,40 @@ const rampRightPath =
     }
   }
 </script>
+
+<style>
+  @keyframes float-hand {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-9px) rotate(-1.5deg);
+    }
+  }
+
+  @keyframes float-bubble {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(9px) rotate(2deg);
+    }
+  }
+
+  .animate-float-hand {
+    animation: float-hand 5.4s ease-in-out infinite;
+  }
+
+  .animate-float-bubble {
+    animation: float-bubble 5.4s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-hand,
+    .animate-float-bubble {
+      animation: none;
+    }
+  }
+</style>

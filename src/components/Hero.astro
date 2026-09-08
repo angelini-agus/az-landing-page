@@ -4,6 +4,8 @@
 // band, full-width, occupying the middle of the hero with the real AZ team.
 import { Image } from 'astro:assets';
 import heroImg from '../assets/hero.jpg';
+import bubbleSingleImg from '../assets/bubble-single.png';
+import bubbleDoubleImg from '../assets/bubble-double.png';
 import Bubble from './ui/Bubble.astro';
 import CtaRampButton from './ui/CtaRampButton.astro';
 
@@ -26,10 +28,23 @@ const ctaHref = '#contacto';
          Mobile: contained rounded card with photo background, strictly calculated against 100dvh, navbar, and safe area.
          Desktop: transparent top row occupying 55vh, with photo band below. -->
     <div
-      class="hero-card-mobile relative overflow-hidden rounded-[28px] sm:rounded-3xl border border-lila-suave/40 bg-[#161224] shadow-xl lg:mt-0 lg:mb-0 lg:h-[55vh] lg:min-h-[55vh] lg:justify-center lg:overflow-visible lg:rounded-none lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none flex flex-col justify-end lg:pt-20 lg:pb-0"
+      class="hero-card-mobile relative overflow-visible rounded-[28px] sm:rounded-3xl border border-lila-suave/40 bg-[#161224] shadow-xl lg:mt-0 lg:mb-0 lg:h-[55vh] lg:min-h-[55vh] lg:justify-center lg:rounded-none lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none flex flex-col justify-end lg:pt-20 lg:pb-0"
     >
+      <!-- Mobile soap bubble resting on top edge and sticking out (Freshify reference) -->
+      <div
+        class="pointer-events-none absolute left-[28%] sm:left-[32%] top-0 z-20 -translate-x-1/2 -translate-y-1/2 select-none lg:hidden"
+        aria-hidden="true"
+      >
+        <Image
+          src={bubbleSingleImg}
+          alt=""
+          class="h-11 w-11 sm:h-13 sm:w-13 object-contain animate-bubble-float"
+          loading="eager"
+        />
+      </div>
+
       <!-- Background photo on mobile (contained inside the rounded card) -->
-      <div class="absolute inset-0 z-0 lg:hidden pointer-events-none">
+      <div class="absolute inset-0 z-0 lg:hidden pointer-events-none overflow-hidden rounded-[27px] sm:rounded-[23px]">
         <Image
           src={heroImg}
           alt=""
@@ -46,6 +61,19 @@ const ctaHref = '#contacto';
           class="absolute inset-0 bg-gradient-to-t from-[#141020]/98 via-[#181326]/90 via-55% to-[#181326]/20"
           aria-hidden="true"
         ></div>
+
+        <!-- Mobile double bubble inside the photo area (Freshify reference) -->
+        <div
+          class="pointer-events-none absolute top-[23%] right-[5%] sm:top-[25%] sm:right-[7%] z-10 select-none"
+          aria-hidden="true"
+        >
+          <Image
+            src={bubbleDoubleImg}
+            alt=""
+            class="h-13 w-13 sm:h-15 sm:w-15 object-contain animate-bubble-float-delayed"
+            loading="eager"
+          />
+        </div>
       </div>
 
       <div
@@ -59,7 +87,7 @@ const ctaHref = '#contacto';
         </h1>
 
         <!-- Stat pills (confirmed client metrics) -->
-        <div class="order-1 lg:order-none flex flex-row flex-wrap items-center gap-2.5 sm:gap-3 lg:flex-col lg:items-start lg:gap-4 lg:min-w-fit">
+        <div class="order-1 lg:order-none flex flex-row flex-wrap items-center gap-2.5 sm:gap-3 lg:flex-col lg:items-start lg:justify-end lg:gap-4 lg:min-w-fit">
           <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-white/95 lg:bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs backdrop-blur-md border border-white/60 lg:border-lila-suave/30">
             <svg
               viewBox="0 0 24 24"
@@ -122,6 +150,19 @@ const ctaHref = '#contacto';
 
     <!-- Photo band: full-width, begins after 55vh, height 77.77vh (desktop only) -->
     <div class="relative hidden pb-16 lg:block lg:pb-24">
+      <!-- Soap bubble resting on the top edge of the photo card (Freshify reference) -->
+      <div
+        class="pointer-events-none absolute left-[37.1%] top-0 z-20 -translate-x-1/2 -translate-y-1/2 select-none"
+        aria-hidden="true"
+      >
+        <Image
+          src={bubbleSingleImg}
+          alt=""
+          class="h-16 w-16 lg:h-[92px] lg:w-[92px] xl:h-[102px] xl:w-[102px] object-contain animate-bubble-float"
+          loading="eager"
+        />
+      </div>
+
       <div
         class="relative mx-auto h-[60vh] sm:h-[70vh] lg:h-[77.77vh] w-full overflow-hidden rounded-3xl bg-lila-suave/25 shadow-2xl lg:rounded-[36px]"
       >
@@ -135,6 +176,19 @@ const ctaHref = '#contacto';
           loading="eager"
           fetchpriority="high"
         />
+
+        <!-- Double bubble in bottom-right corner (Freshify reference) -->
+        <div
+          class="pointer-events-none absolute bottom-[8%] right-[11%] lg:bottom-[9%] lg:right-[12%] z-10 select-none"
+          aria-hidden="true"
+        >
+          <Image
+            src={bubbleDoubleImg}
+            alt=""
+            class="h-20 w-20 lg:h-[106px] lg:w-[106px] xl:h-[118px] xl:w-[118px] object-contain animate-bubble-float-delayed"
+            loading="eager"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -152,6 +206,41 @@ const ctaHref = '#contacto';
       margin-top: 0;
       margin-bottom: 0;
       height: 55vh;
+    }
+  }
+
+  @keyframes bubble-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes bubble-float-alt {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(8px) rotate(2deg);
+    }
+  }
+
+  .animate-bubble-float {
+    animation: bubble-float 5s ease-in-out infinite;
+  }
+
+  .animate-bubble-float-delayed {
+    animation: bubble-float-alt 5s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-bubble-float,
+    .animate-bubble-float-delayed {
+      animation: none;
     }
   }
 </style>

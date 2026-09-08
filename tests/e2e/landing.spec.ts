@@ -317,4 +317,13 @@ test('contacto: los inputs y opciones no cortan sus sombras ni focus ring con ov
   const input = page.locator('#nombre');
   await input.focus();
   await page.screenshot({ path: 'test-results/focus-step2.png' });
+});
+
+test('hero mobile: burbujas simple superior y doble dentro de la foto', async ({ page }) => {
+  for (const vp of [{ width: 375, height: 667, name: 'se' }, { width: 390, height: 844, name: '13' }]) {
+    await page.setViewportSize({ width: vp.width, height: vp.height });
+    await page.goto('/');
+    await page.waitForTimeout(600);
+    await page.screenshot({ path: `test-results/mobile-${vp.name}-hero-bubbles.png` });
+  }
 });

@@ -1,9 +1,12 @@
 ---
 // ContactSection.astro — Final CTA & Contact Form section (#contacto).
 // Photo banner at top with glassmorphic contact card overlapping it, matching the visual reference.
+import { Image } from 'astro:assets';
 import Bubble from './ui/Bubble.astro';
 import CtaRampButton from './ui/CtaRampButton.astro';
 import auroraUrl from '../assets/contact-aurora-bg.svg?url';
+import bubbleSingleImg from '../assets/bubble-single.png';
+import bubbleDoubleImg from '../assets/bubble-double.png';
 
 interface Props {
   eyebrow?: string;
@@ -65,10 +68,35 @@ const {
 
     <!-- Glassmorphic Overlapping Contact Card -->
     <div class="container-page relative z-10 pt-10 sm:pt-14 lg:pt-0 lg:-mt-[376px]">
+      <!-- Soap bubble single floating on the left (Freshify reference) -->
+      <div
+        class="pointer-events-none absolute left-4 sm:left-8 lg:left-12 xl:left-20 top-48 sm:top-56 lg:top-64 z-20 hidden lg:block select-none"
+        aria-hidden="true"
+      >
+        <Image
+          src={bubbleSingleImg}
+          alt=""
+          class="h-16 w-16 lg:h-[84px] lg:w-[84px] xl:h-[96px] xl:w-[96px] object-contain animate-bubble-float"
+          loading="eager"
+        />
+      </div>
+
       <div
         data-reveal
         class="relative mx-auto max-w-3xl rounded-[2.5rem] border border-white/80 bg-[#FAF8FE]/80 p-6 sm:p-10 lg:p-14 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white"
       >
+        <!-- Soap bubble double straddling the right edge of the contact card (Freshify reference) -->
+        <div
+          class="pointer-events-none absolute -right-10 sm:-right-12 lg:-right-14 xl:-right-16 top-24 sm:top-28 lg:top-32 z-20 hidden lg:block select-none"
+          aria-hidden="true"
+        >
+          <Image
+            src={bubbleDoubleImg}
+            alt=""
+            class="h-20 w-20 lg:h-[104px] lg:w-[104px] xl:h-[116px] xl:w-[116px] object-contain animate-bubble-float-delayed"
+            loading="eager"
+          />
+        </div>
       <!-- Stepper Progress Header -->
       <div class="mb-6 sm:mb-8" id="form-stepper" aria-label="Progreso del formulario">
         <div class="flex items-center justify-between gap-2 max-w-xs mx-auto">
@@ -916,3 +944,40 @@ const {
     }
   }
 </script>
+
+<style>
+  @keyframes bubble-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes bubble-float-alt {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(8px) rotate(2deg);
+    }
+  }
+
+  .animate-bubble-float {
+    animation: bubble-float 5s ease-in-out infinite;
+  }
+
+  .animate-bubble-float-delayed {
+    animation: bubble-float-alt 5s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-bubble-float,
+    .animate-bubble-float-delayed {
+      animation: none;
+    }
+  }
+</style>
