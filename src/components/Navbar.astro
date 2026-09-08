@@ -445,7 +445,10 @@ const contactHref = '#contacto';
         // Tailored landing offsets per section, computed by lib/scroll-offset.ts
         let targetOffset = getBaseSectionOffset(href);
         if (href === '#contacto') {
-          const bannerEl = targetEl.querySelector<HTMLElement>('[data-contact-banner]');
+          const bannerEl =
+            Array.from(targetEl.querySelectorAll<HTMLElement>('[data-contact-banner]')).find(
+              (el) => el.offsetParent !== null,
+            ) ?? targetEl.querySelector<HTMLElement>('[data-contact-banner]');
           const dockEl = document.querySelector<HTMLElement>('[data-dock-nav]');
           const isDockVisible = dockEl && window.getComputedStyle(dockEl).display !== 'none';
           const navbarTop = isDockVisible

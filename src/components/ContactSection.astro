@@ -19,10 +19,32 @@ const {
   class="relative min-h-[calc(100vh-5.5rem)] flex flex-col justify-center overflow-visible bg-bg-claro py-8 lg:py-12"
 >
   <div class="relative mx-auto w-full px-2 sm:px-4 lg:px-6 pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 lg:pb-0">
-    <!-- Top Photo Banner (SVG aurora gradient background in violet palette) -->
+    <!-- Mobile full-bleed gradient backdrop (absolute, spans the whole section; hidden on lg+) -->
     <div
       data-contact-banner
-      class="absolute inset-x-2 sm:inset-x-4 top-6 sm:top-8 bottom-0 overflow-hidden rounded-[2.5rem] bg-[#140F22] shadow-xl lg:static lg:inset-auto lg:h-[528px] lg:w-full"
+      class="absolute inset-x-2 sm:inset-x-4 top-6 sm:top-8 bottom-0 overflow-hidden rounded-[2.5rem] bg-[#140F22] shadow-xl lg:hidden"
+    >
+      <!-- SVG Aurora Background -->
+      <img
+        src={auroraUrl}
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 z-0 h-full w-full object-cover object-top"
+        fetchpriority="low"
+        loading="lazy"
+      />
+
+      <!-- Floating decorative bubbles overlapping the banner edges -->
+      <div class="pointer-events-none absolute inset-0 z-10 overflow-hidden" aria-hidden="true">
+        <Bubble size={180} top={12} left={-4} blur={40} opacity={0.35} tone="light" duration={6} delay={0} />
+        <Bubble size={240} top={20} left={85} blur={50} opacity={0.3} tone="gray" duration={7} delay={1} />
+      </div>
+    </div>
+
+    <!-- Desktop contained top banner (shown on lg+, overlaps ~half the contact card) -->
+    <div
+      data-contact-banner
+      class="hidden lg:block relative h-[528px] w-full overflow-hidden rounded-[2.5rem] bg-[#140F22] shadow-xl"
     >
       <!-- SVG Aurora Background -->
       <img
@@ -45,7 +67,7 @@ const {
     <div class="container-page relative z-10 pt-10 sm:pt-14 lg:pt-0 lg:-mt-[376px]">
       <div
         data-reveal
-        class="relative mx-auto max-w-3xl rounded-[2.5rem] border border-white/80 bg-[#FAF8FE]/90 p-6 sm:p-10 lg:p-14 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white"
+        class="relative mx-auto max-w-3xl rounded-[2.5rem] border border-white/80 bg-[#FAF8FE]/80 p-6 sm:p-10 lg:p-14 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white"
       >
       <!-- Stepper Progress Header -->
       <div class="mb-6 sm:mb-8" id="form-stepper" aria-label="Progreso del formulario">
@@ -110,7 +132,7 @@ const {
         <div id="form-error-live" aria-live="polite" role="status" class="sr-only"></div>
 
         <!-- Carousel Step Wrapper -->
-        <div class="relative overflow-clip min-h-[320px] transition-[height] duration-300 ease-out" id="steps-container">
+        <div class="relative min-h-[320px] transition-[height] duration-300 ease-out" id="steps-container">
 
           <!-- ========================================================= -->
           <!-- PASO 1: Selección de tipo de espacio                      -->

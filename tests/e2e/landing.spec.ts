@@ -140,7 +140,7 @@ test('contacto fondo: tanto móvil como desktop usan SVG estático de aurora sin
   await page.waitForTimeout(600);
 
   const canvas = page.locator('canvas[data-shader-canvas]');
-  const staticAurora = page.locator('[data-contact-banner] img');
+  const staticAurora = page.locator('[data-contact-banner]:visible img');
 
   // En móvil: el SVG estático es visible y no hay canvas WebGL
   await expect(staticAurora).toBeVisible();
@@ -301,4 +301,20 @@ test('contacto mobile: pasos 2 y 3 alineados sin corte a la izquierda', async ({
     expect(step3Metrics.scrollLeft, `scrollLeft en paso 3 (${width}x${height})`).toBe(0);
     expect(Math.abs(step3Metrics.panelLeft - step3Metrics.containerLeft)).toBeLessThanOrEqual(5);
   }
+});
+
+test('contacto: los inputs y opciones no cortan sus sombras ni focus ring con overflow', async ({ page }) => {
+  await page.goto('/#contacto');
+  await page.waitForTimeout(600);
+
+  const option = page.locator('button[data-space-option="consorcio"]');
+  await option.focus();
+  await page.screenshot({ path: 'test-results/focus-step1.png' });
+
+  await option.click();
+  await page.waitForTimeout(600);
+
+  const input = page.locator('#nombre');
+  await input.focus();
+  await page.screenshot({ path: 'test-results/focus-step2.png' });
 });
