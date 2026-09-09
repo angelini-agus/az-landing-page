@@ -151,7 +151,6 @@ AZ Servicios de Limpieza maintains an internal operations and personnel manageme
 
 - Requests to `/login` or `/login/*` are transparently proxied by Vercel to the hosted Angular ERP.
 - Both the navbar and footer include an institutional **Employee Access** button linking directly to `/login`.
-- If a user already has an active ERP session (`az_erp_session` or `currentUser` in `localStorage`), the layout detects it and automatically redirects them to their dashboard.
 
 ---
 

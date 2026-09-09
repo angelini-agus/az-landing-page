@@ -17,15 +17,6 @@ const description =
 ---
 
 <BaseLayout {title} {description}>
-  <script is:inline>
-    try {
-      const session = localStorage.getItem('az_erp_session');
-      const user = localStorage.getItem('currentUser');
-      if (session === 'active' || user) {
-        window.location.replace('/login/inicio');
-      }
-    } catch (e) {}
-  </script>
   <main>
     <Hero />
     <SocialProof />
