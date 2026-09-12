@@ -39,7 +39,7 @@ const ctaHref = '#contacto';
           src={bubbleSingleImg}
           alt=""
           class="h-11 w-11 sm:h-13 sm:w-13 object-contain animate-bubble-float"
-          loading="eager"
+          loading="lazy"
         />
       </div>
 
@@ -52,10 +52,9 @@ const ctaHref = '#contacto';
           class="h-full w-full object-cover object-[73%_center]"
           widths={[360, 480, 640, 800, 1080]}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1px"
-          quality={76}
+          quality={75}
           loading="eager"
           fetchpriority="high"
-          decoding="sync"
         />
         <!-- Scrim gradient: dark navy/violet with high opacity where text sits, feathering to translucent at the top to let the team photo shine -->
         <div
@@ -72,7 +71,7 @@ const ctaHref = '#contacto';
             src={bubbleDoubleImg}
             alt=""
             class="h-13 w-13 sm:h-15 sm:w-15 object-contain animate-bubble-float-delayed"
-            loading="eager"
+            loading="lazy"
           />
         </div>
       </div>

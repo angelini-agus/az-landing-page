@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap: generated automatically at build time by @astrojs/sitemap
-Sitemap: https://azserviciosdelimpieza.com/sitemap-index.xml
+Sitemap: https://www.azserviciosdelimpieza.com/sitemap-index.xml

@@ -4,8 +4,7 @@
 import 'lenis/dist/lenis.css';
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import parkinsansLatinUrl from '@fontsource-variable/parkinsans/files/parkinsans-latin-wght-normal.woff2?url';
-import interTightLatinUrl from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
+
 
 interface Props {
   title: string;
@@ -69,21 +68,7 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#5B4E8A" />
 
-    <!-- Preload critical display and body fonts -->
-    <link
-      rel="preload"
-      href={parkinsansLatinUrl}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={interTightLatinUrl}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+
 
     <!-- Structured data: LocalBusiness -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
