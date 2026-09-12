@@ -15,7 +15,7 @@ interface Props {
 
 const { title, description, canonicalPath = '/', noindex = false } = Astro.props;
 
-const siteUrl = 'https://azserviciosdelimpieza.com';
+const siteUrl = 'https://www.azserviciosdelimpieza.com';
 const canonical = new URL(canonicalPath, siteUrl).toString();
 const ogImage = new URL('/og-image.jpg', siteUrl).toString();
 ---

@@ -3,7 +3,10 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://azserviciosdelimpieza.com',
+  site: 'https://www.azserviciosdelimpieza.com',
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

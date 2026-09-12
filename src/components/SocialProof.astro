@@ -244,9 +244,11 @@ import Bubble from './ui/Bubble.astro';
           <Image
             src={sobreNosotrosImg}
             alt="Personal de AZ Servicios de Limpieza uniformado"
-            widths={[480, 720, 1024]}
+            widths={[360, 480, 720, 1024]}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
-            quality={95}
+            quality={82}
+            loading="lazy"
+            decoding="async"
             class="absolute inset-0 h-full w-full object-cover object-center"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-indigo-texto/70 via-indigo-texto/10 to-transparent"></div>
