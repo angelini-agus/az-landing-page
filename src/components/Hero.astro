@@ -12,9 +12,9 @@ import CtaRampButton from './ui/CtaRampButton.astro';
 const ctaHref = '#contacto';
 ---
 
-<section id="inicio" class="relative overflow-hidden bg-bg-claro h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex flex-col justify-start lg:h-auto lg:min-h-0 lg:max-h-none lg:block">
+<section id="inicio" class="relative overflow-hidden bg-bg-claro pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-0 lg:pb-0 lg:block">
   <!-- Decorative bubbles: white/gray, blurred, never brand-tinted.
-       Kept on desktop; hidden on mobile to avoid competing with the real photo background. -->
+       Kept on desktop; subtle on mobile. -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
     <div class="absolute inset-0 hidden lg:block">
       <Bubble size={380} top={-16} left={55} blur={70} opacity={0.6} tone="gray" duration={6} delay={0} />
@@ -23,72 +23,24 @@ const ctaHref = '#contacto';
     </div>
   </div>
 
-  <div class="container-page relative flex flex-1 flex-col justify-start lg:block">
-    <!-- Hero card container:
-         Mobile: contained rounded card with photo background, strictly calculated against 100dvh, navbar, and safe area.
-         Desktop: transparent top row occupying 55vh, with photo band below. -->
+  <div class="container-page relative">
+    <!-- Top row: headline, stat pills, copy + CTA -->
     <div
-      class="hero-card-mobile relative overflow-visible rounded-[28px] sm:rounded-3xl border border-lila-suave/40 bg-[#161224] shadow-xl lg:mt-0 lg:mb-0 lg:h-[55vh] lg:min-h-[55vh] lg:justify-center lg:rounded-none lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none flex flex-col justify-end lg:pt-20 lg:pb-0"
+      class="relative flex flex-col gap-6 pt-4 pb-8 sm:gap-8 sm:pt-6 sm:pb-10 lg:h-[55vh] lg:min-h-[55vh] lg:justify-center lg:p-0 lg:pt-20 lg:pb-0"
     >
-      <!-- Mobile soap bubble resting on top edge and sticking out (Freshify reference) -->
       <div
-        class="pointer-events-none absolute left-[28%] sm:left-[32%] top-0 z-20 -translate-x-1/2 -translate-y-1/2 select-none lg:hidden"
-        aria-hidden="true"
-      >
-        <Image
-          src={bubbleSingleImg}
-          alt=""
-          class="h-11 w-11 sm:h-13 sm:w-13 object-contain animate-bubble-float"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Background photo on mobile (contained inside the rounded card) -->
-      <div class="absolute inset-0 z-0 lg:hidden pointer-events-none overflow-hidden rounded-[27px] sm:rounded-[23px]">
-        <Image
-          src={heroImg}
-          alt=""
-          aria-hidden="true"
-          class="h-full w-full object-cover object-[73%_center]"
-          widths={[360, 480, 640, 800, 1080]}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1px"
-          quality={75}
-          loading="eager"
-          fetchpriority="high"
-        />
-        <!-- Scrim gradient: dark navy/violet with high opacity where text sits, feathering to translucent at the top to let the team photo shine -->
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-[#141020]/98 via-[#181326]/90 via-55% to-[#181326]/20"
-          aria-hidden="true"
-        ></div>
-
-        <!-- Mobile double bubble inside the photo area (Freshify reference) -->
-        <div
-          class="pointer-events-none absolute top-[23%] right-[5%] sm:top-[25%] sm:right-[7%] z-10 select-none"
-          aria-hidden="true"
-        >
-          <Image
-            src={bubbleDoubleImg}
-            alt=""
-            class="h-13 w-13 sm:h-15 sm:w-15 object-contain animate-bubble-float-delayed"
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      <div
-        class="relative z-10 flex flex-col justify-end gap-3.5 sm:gap-5 p-5 pb-6 sm:p-7 sm:pb-8 lg:p-0 lg:grid lg:grid-cols-[1.2fr_auto_auto] lg:items-stretch lg:gap-16"
+        class="flex flex-col gap-5 sm:gap-6 lg:grid lg:grid-cols-[1.2fr_auto_auto] lg:items-stretch lg:gap-16"
       >
         <!-- Giant headline -->
-        <h1 class="order-2 lg:order-none font-display text-3xl sm:text-4xl lg:text-[7.5rem] font-semibold leading-[1.04] lg:leading-[0.98] tracking-[-0.01em] text-white lg:text-indigo-texto">
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[7.5rem] font-semibold leading-[1.04] lg:leading-[0.98] tracking-[-0.01em] text-indigo-texto">
           Espacios
           <br />
           impecables
         </h1>
 
         <!-- Stat pills (confirmed client metrics) -->
-        <div class="order-1 lg:order-none flex flex-row flex-wrap items-center gap-2.5 sm:gap-3 lg:flex-col lg:items-start lg:justify-end lg:gap-4 lg:min-w-fit">
-          <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-white/95 lg:bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs backdrop-blur-md border border-white/60 lg:border-lila-suave/30">
+        <div class="flex flex-row flex-wrap items-center gap-2.5 sm:gap-3 lg:flex-col lg:items-start lg:justify-end lg:gap-4 lg:min-w-fit">
+          <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs border border-lila-suave/30">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -113,7 +65,7 @@ const ctaHref = '#contacto';
             </span>
           </span>
 
-          <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-white/95 lg:bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs backdrop-blur-md border border-white/60 lg:border-lila-suave/30">
+          <span class="inline-flex h-11 sm:h-12 lg:h-16 items-center gap-2.5 sm:gap-3 lg:gap-3.5 rounded-xl sm:rounded-2xl bg-lila-pastel/90 px-3.5 sm:px-4 lg:px-5 shadow-xs border border-lila-suave/30">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -137,8 +89,8 @@ const ctaHref = '#contacto';
         </div>
 
         <!-- Copy + CTA -->
-        <div class="order-3 lg:order-none flex w-full max-w-sm flex-col justify-end gap-3 sm:gap-4 lg:gap-6">
-          <p class="text-xs sm:text-sm lg:text-base leading-relaxed text-white/90 lg:text-indigo-texto/85 font-normal lg:font-medium">
+        <div class="flex w-full max-w-sm flex-col justify-end gap-3 sm:gap-4 lg:gap-6">
+          <p class="text-sm sm:text-base leading-relaxed text-texto-secundario font-normal lg:font-medium">
             Equipo propio, turnos controlados por QR y GPS. Presupuesto personalizado en menos de 72 hs.
           </p>
           <CtaRampButton href={ctaHref} class="w-full sm:w-auto">
@@ -148,8 +100,8 @@ const ctaHref = '#contacto';
       </div>
     </div>
 
-    <!-- Photo band: full-width, begins after 55vh, height 77.77vh (desktop only) -->
-    <div class="relative hidden pb-16 lg:block lg:pb-24">
+    <!-- Photo band: full-width, placed below text on mobile and desktop alike -->
+    <div class="relative block pb-12 sm:pb-16 lg:pb-24">
       <!-- Soap bubble resting on the top edge of the photo card (Freshify reference) -->
       <div
         class="pointer-events-none absolute left-[37.1%] top-0 z-20 -translate-x-1/2 -translate-y-1/2 select-none"
@@ -158,35 +110,35 @@ const ctaHref = '#contacto';
         <Image
           src={bubbleSingleImg}
           alt=""
-          class="h-16 w-16 lg:h-[92px] lg:w-[92px] xl:h-[102px] xl:w-[102px] object-contain animate-bubble-float"
-          loading="eager"
+          class="h-12 w-12 sm:h-16 sm:w-16 lg:h-[92px] lg:w-[92px] xl:h-[102px] xl:w-[102px] object-contain animate-bubble-float"
+          loading="lazy"
         />
       </div>
 
       <div
-        class="relative mx-auto h-[60vh] sm:h-[70vh] lg:h-[77.77vh] w-full overflow-hidden rounded-3xl bg-lila-suave/25 shadow-2xl lg:rounded-[36px]"
+        class="relative mx-auto h-[36vh] sm:h-[48vh] md:h-[60vh] lg:h-[77.77vh] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-lila-suave/25 shadow-xl lg:rounded-[36px] lg:shadow-2xl"
       >
         <Image
           src={heroImg}
           alt="Personal de AZ Servicios de Limpieza trabajando con uniforme en el hall de un edificio"
           class="h-full w-full object-cover object-[center_30%]"
-          widths={[720, 1080, 1440, 1920, 2560]}
+          widths={[480, 720, 1080, 1440, 1920]}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 1440px"
-          quality={90}
-          loading="eager"
-          fetchpriority="high"
+          quality={80}
+          loading="lazy"
+          decoding="async"
         />
 
         <!-- Double bubble in bottom-right corner (Freshify reference) -->
         <div
-          class="pointer-events-none absolute bottom-[8%] right-[11%] lg:bottom-[9%] lg:right-[12%] z-10 select-none"
+          class="pointer-events-none absolute bottom-[8%] right-[6%] sm:right-[11%] lg:bottom-[9%] lg:right-[12%] z-10 select-none"
           aria-hidden="true"
         >
           <Image
             src={bubbleDoubleImg}
             alt=""
-            class="h-20 w-20 lg:h-[106px] lg:w-[106px] xl:h-[118px] xl:w-[118px] object-contain animate-bubble-float-delayed"
-            loading="eager"
+            class="h-14 w-14 sm:h-20 sm:w-20 lg:h-[106px] lg:w-[106px] xl:h-[118px] xl:w-[118px] object-contain animate-bubble-float-delayed"
+            loading="lazy"
           />
         </div>
       </div>
@@ -195,20 +147,6 @@ const ctaHref = '#contacto';
 </section>
 
 <style>
-  .hero-card-mobile {
-    margin-top: var(--navbar-total-space, 72px);
-    margin-bottom: var(--navbar-total-space, 72px);
-    height: var(--hero-card-height-mobile, calc(100dvh - (var(--navbar-total-space, 72px) * 2)));
-  }
-
-  @media (min-width: 1024px) {
-    .hero-card-mobile {
-      margin-top: 0;
-      margin-bottom: 0;
-      height: 55vh;
-    }
-  }
-
   @keyframes bubble-float {
     0%,
     100% {
