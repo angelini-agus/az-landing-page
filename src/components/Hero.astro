@@ -122,11 +122,11 @@ const ctaHref = '#contacto';
           src={heroImg}
           alt="Personal de AZ Servicios de Limpieza trabajando con uniforme en el hall de un edificio"
           class="h-full w-full object-cover object-[center_30%]"
-          widths={[480, 720, 1080, 1440, 1920]}
+          widths={[360, 480, 720, 1080, 1440, 1920]}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 1440px"
-          quality={80}
-          loading="lazy"
-          decoding="async"
+          quality={75}
+          loading="eager"
+          fetchpriority="high"
         />
 
         <!-- Double bubble in bottom-right corner (Freshify reference) -->
