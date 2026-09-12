@@ -11,9 +11,10 @@ interface Props {
   description: string;
   canonicalPath?: string;
   noindex?: boolean;
+  preloadImage?: string;
 }
 
-const { title, description, canonicalPath = '/', noindex = false } = Astro.props;
+const { title, description, canonicalPath = '/', noindex = false, preloadImage } = Astro.props;
 
 const siteUrl = 'https://www.azserviciosdelimpieza.com';
 const canonical = new URL(canonicalPath, siteUrl).toString();
@@ -67,6 +68,15 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#5B4E8A" />
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage}
+        type="image/webp"
+        fetchpriority="high"
+      />
+    )}
 
 
 

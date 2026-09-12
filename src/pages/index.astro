@@ -1,5 +1,7 @@
 ---
 // Landing page. Sections are composed one per prompt; Hero is the first one.
+import { getImage } from 'astro:assets';
+import heroImg from '../assets/hero.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SocialProof from '../components/SocialProof.astro';
@@ -14,9 +16,16 @@ import Footer from '../components/Footer.astro';
 const title = 'AZ Servicios de Limpieza — Limpieza integral para consorcios, oficinas y clínicas en Rosario';
 const description =
   'Limpieza profesional para consorcios, oficinas y clínicas en Rosario. Equipo propio, asistencia controlada por QR y GPS, y un solo mail para resolverlo.';
+
+const heroPreload = await getImage({
+  src: heroImg,
+  width: 480,
+  format: 'webp',
+  quality: 75,
+});
 ---
 
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} preloadImage={heroPreload.src}>
   <main>
     <Hero />
     <SocialProof />
