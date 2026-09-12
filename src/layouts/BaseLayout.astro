@@ -10,9 +10,10 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonicalPath = '/' } = Astro.props;
+const { title, description, canonicalPath = '/', noindex = false } = Astro.props;
 
 const siteUrl = 'https://azserviciosdelimpieza.com';
 const canonical = new URL(canonicalPath, siteUrl).toString();
@@ -26,7 +27,19 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="AZ Servicios de Limpieza" />
     <link rel="canonical" href={canonical} />
+
+    <!-- Robots & Indexing -->
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+
+    <!-- Local SEO Geo tags -->
+    <meta name="geo.region" content="AR-S" />
+    <meta name="geo.placename" content="Rosario" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -84,17 +97,69 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
         'Limpieza de oficinas',
         'Limpieza de clínicas',
       ],
-      // TODO: completar con datos reales del cliente antes de producción.
-      // No se incluye telephone/openingHours: AZ no tiene teléfono público
-      // (contacto inicial por mail, WhatsApp solo post-calificación).
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Rosario',
         addressRegion: 'Santa Fe',
         addressCountry: 'AR',
       },
-      email: 'TODO@confirmar-mail-real.com',
       sameAs: [],
+    })} />
+
+    <!-- Structured data: FAQPage -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Atienden hogares particulares?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. Trabajamos exclusivamente con consorcios, oficinas y clínicas.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo sé si el personal cumplió el turno?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Cada turno se registra con QR y GPS. Podés pedir el reporte de asistencia cuando quieras.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo llamarlos por teléfono?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El contacto inicial es por mail. Una vez que evaluamos tu caso, seguimos la conversación por WhatsApp para coordinar todo más rápido.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿El personal es de ustedes o tercerizado?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Es equipo propio de AZ.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Trabajan con protocolos específicos para clínicas?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, ajustamos frecuencia y protocolo de limpieza según el tipo de espacio y sus requisitos de higiene.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué pasa si no estoy conforme con el servicio?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Hacemos seguimiento activo después de empezar — ajustamos frecuencia y protocolo según cómo va funcionando.',
+          },
+        },
+      ],
     })} />
   </head>
   <body class="bg-bg-claro overflow-x-clip max-w-full">
@@ -115,7 +180,7 @@ const ogImage = new URL('/og-image.jpg', siteUrl).toString();
           touchMultiplier: 1.5,
         });
 
-        (window as any).lenis = lenis;
+        window.__lenis = lenis;
 
         function raf(time: number) {
           lenis.raf(time);

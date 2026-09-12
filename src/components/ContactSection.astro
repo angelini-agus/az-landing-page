@@ -156,6 +156,12 @@ const {
         <!-- Hidden input for standard form serialization -->
         <input type="hidden" id="tipo-espacio-input" name="tipo-espacio" value="" />
 
+        <!-- Honeypot anti-spam field -->
+        <div class="sr-only" aria-hidden="true" style="display: none;">
+          <label for="contact-bot-check">No completar este campo</label>
+          <input type="text" id="contact-bot-check" name="_gotcha" tabindex="-1" autocomplete="off" value="" />
+        </div>
+
         <!-- Live region for accessibility & test assertions -->
         <div id="form-error-live" aria-live="polite" role="status" class="sr-only"></div>
 
@@ -300,6 +306,7 @@ const {
                       type="text"
                       id="nombre"
                       name="nombre"
+                      autocomplete="name"
                       required
                       placeholder="Tu nombre completo"
                       class="w-full rounded-2xl border border-lila-suave/50 bg-white/80 px-4 py-3.5 sm:py-4 text-sm text-indigo-texto placeholder:text-texto-secundario/50 backdrop-blur-xs transition-all duration-200 hover:border-lila-medio/60 focus:border-violeta-osc focus:bg-white focus:outline-none focus:ring-3 focus:ring-violeta-osc/15"
@@ -315,6 +322,7 @@ const {
                       type="text"
                       id="institucion"
                       name="institucion"
+                      autocomplete="organization"
                       required
                       placeholder="Ej: Consorcio Av. Libertador 1400"
                       class="w-full rounded-2xl border border-lila-suave/50 bg-white/80 px-4 py-3.5 sm:py-4 text-sm text-indigo-texto placeholder:text-texto-secundario/50 backdrop-blur-xs transition-all duration-200 hover:border-lila-medio/60 focus:border-violeta-osc focus:bg-white focus:outline-none focus:ring-3 focus:ring-violeta-osc/15"
@@ -332,6 +340,7 @@ const {
                       type="email"
                       id="email"
                       name="email"
+                      autocomplete="email"
                       required
                       placeholder="tu@edificio-empresa.com"
                       class="w-full rounded-2xl border border-lila-suave/50 bg-white/80 px-4 py-3.5 sm:py-4 text-sm text-indigo-texto placeholder:text-texto-secundario/50 backdrop-blur-xs transition-all duration-200 hover:border-lila-medio/60 focus:border-violeta-osc focus:bg-white focus:outline-none focus:ring-3 focus:ring-violeta-osc/15"
@@ -347,6 +356,7 @@ const {
                       type="tel"
                       id="telefono"
                       name="telefono"
+                      autocomplete="tel"
                       required
                       placeholder="Ej: 11 2345-6789"
                       class="w-full rounded-2xl border border-lila-suave/50 bg-white/80 px-4 py-3.5 sm:py-4 text-sm text-indigo-texto placeholder:text-texto-secundario/50 backdrop-blur-xs transition-all duration-200 hover:border-lila-medio/60 focus:border-violeta-osc focus:bg-white focus:outline-none focus:ring-3 focus:ring-violeta-osc/15"
@@ -813,6 +823,12 @@ const {
     e.preventDefault();
     clearFieldErrors();
     if (errorLive) errorLive.textContent = '';
+
+    // Silent anti-spam drop if honeypot was completed by bot
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="_gotcha"]');
+    if (honeypot && honeypot.value.trim().length > 0) {
+      return;
+    }
 
     const values = {
       nombre: inputNombre?.value ?? '',

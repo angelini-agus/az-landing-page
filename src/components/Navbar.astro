@@ -337,7 +337,7 @@ const contactHref = '#contacto';
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     document.body.classList.toggle('overflow-hidden', open);
-    const lenis = (window as any).lenis;
+    const lenis = window.__lenis;
     if (lenis) {
       if (open) lenis.stop();
       else lenis.start();
@@ -464,7 +464,7 @@ const contactHref = '#contacto';
           });
         }
 
-        const lenis = (window as any).lenis;
+        const lenis = window.__lenis;
         if (lenis) {
           lenis.scrollTo(targetEl, {
             offset: targetOffset,

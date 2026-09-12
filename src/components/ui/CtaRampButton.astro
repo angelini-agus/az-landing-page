@@ -9,8 +9,8 @@ interface Props {
   href?: string;
   /** Button label fallback when no slot content is passed. */
   text?: string;
-  /** Visual theme: 'primary' (AZ turq-medio) or 'yellow' (Freshify replica). */
-  variant?: 'primary' | 'yellow';
+  /** Visual theme: 'primary' (AZ turq-medio). */
+  variant?: 'primary';
   /** Slope direction: 'left' (left taller) or 'right' (right taller). Default: 'left'. */
   rampDirection?: 'left' | 'right';
   /** Whether to render the trailing arrow icon. Default: true. */
@@ -24,15 +24,11 @@ interface Props {
 const {
   href,
   text = 'Pedí tu presupuesto por mail',
-  variant = 'primary',
   rampDirection = 'left',
   showArrow = true,
   class: className = '',
   type = 'button',
 } = Astro.props;
-
-const isYellow = variant === 'yellow';
-const variantClass = isYellow ? 'cta-ramp-svg--yellow' : 'cta-ramp-svg--primary';
 
 const leftPath =
   'M 16 0 L 244 6 C 253 6.2 260 13 260 22 L 260 44 C 260 53 253 60 244 60 L 16 60 C 7 60 0 53 0 44 L 0 16 C 0 7 7 0 16 0 Z';
@@ -46,17 +42,13 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
     <a
       href={href}
       class:list={[
-        'cta-ramp-button group isolate relative inline-flex h-16 items-center justify-between px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4',
-        isYellow
-          ? 'text-neutral-900 focus-visible:outline-[#F5D300]'
-          : 'text-indigo-texto focus-visible:outline-turq-cta',
+        'cta-ramp-button group isolate relative inline-flex h-16 items-center justify-between px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] text-indigo-texto focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-turq-cta',
         className,
       ]}
     >
       <svg
         class:list={[
-          'pointer-events-none absolute inset-0 z-0 h-full w-full group-hover:scale-[1.02] motion-reduce:transform-none',
-          variantClass,
+          'cta-ramp-svg--primary pointer-events-none absolute inset-0 z-0 h-full w-full group-hover:scale-[1.02] motion-reduce:transform-none',
         ]}
         viewBox="0 0 260 60"
         preserveAspectRatio="none"
@@ -88,17 +80,13 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
     <button
       type={type}
       class:list={[
-        'cta-ramp-button group isolate relative inline-flex h-16 items-center justify-between px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 cursor-pointer',
-        isYellow
-          ? 'text-neutral-900 focus-visible:outline-[#F5D300]'
-          : 'text-indigo-texto focus-visible:outline-turq-cta',
+        'cta-ramp-button group isolate relative inline-flex h-16 items-center justify-between px-7 text-sm font-semibold tracking-tight transition-transform duration-150 active:scale-[0.98] text-indigo-texto focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-turq-cta cursor-pointer',
         className,
       ]}
     >
       <svg
         class:list={[
-          'pointer-events-none absolute inset-0 z-0 h-full w-full group-hover:scale-[1.02] motion-reduce:transform-none',
-          variantClass,
+          'cta-ramp-svg--primary pointer-events-none absolute inset-0 z-0 h-full w-full group-hover:scale-[1.02] motion-reduce:transform-none',
         ]}
         viewBox="0 0 260 60"
         preserveAspectRatio="none"
@@ -165,20 +153,6 @@ const pathD = rampDirection === 'right' ? rightPath : leftPath;
   .group:hover .cta-ramp-svg--primary {
     fill: var(--color-turq-cta-hover, #8fd4c2);
     filter: drop-shadow(0 12px 26px rgba(63, 168, 143, 0.45));
-  }
-
-  .cta-ramp-svg--yellow {
-    fill: #f5d300;
-    filter: drop-shadow(0 8px 18px rgba(245, 211, 0, 0.35));
-    transition:
-      fill 0.2s ease,
-      filter 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .group:hover .cta-ramp-svg--yellow {
-    fill: #f8dc20;
-    filter: drop-shadow(0 12px 24px rgba(245, 211, 0, 0.45));
   }
 
   /* Single-arrow carousel animation ("calesita") */

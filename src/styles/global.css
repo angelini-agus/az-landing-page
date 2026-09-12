@@ -89,12 +89,6 @@
     @apply mx-auto max-w-[1440px] px-4 lg:px-10;
   }
 
-  /* Freshify-style asymmetric corner ("ramp"): customizable via --ramp-* custom properties. */
-  .shape-ramp {
-    border-radius: var(--ramp-tl, 2.25rem) var(--ramp-tr, 0.75rem)
-      var(--ramp-br, 0.75rem) var(--ramp-bl, 0.75rem);
-  }
-
   /* Decorative circle. Position, size and palette are driven by CSS
      custom properties set inline by the Bubble component. */
   .bubble {
@@ -161,44 +155,6 @@
   .btn-secondary:hover {
     filter: brightness(1.1);
     box-shadow: 0 8px 20px rgba(91, 78, 138, 0.3);
-  }
-
-  /* Secondary inverted: for use over violeta-osc sections. */
-  .btn-secondary-inverted {
-    background: #fff;
-    color: var(--color-violeta-osc);
-  }
-
-  .btn-secondary-inverted:hover {
-    background: var(--color-lila-pastel);
-  }
-
-  /* Ghost: text-only with an animated underline on hover. */
-  .btn-ghost {
-    background: transparent;
-    color: var(--color-indigo-texto);
-    position: relative;
-  }
-
-  .btn-ghost::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0.35em;
-    height: 2px;
-    width: 100%;
-    background: var(--color-lila-medio);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s ease;
-  }
-
-  .btn-ghost:hover {
-    color: var(--color-lila-medio);
-  }
-
-  .btn-ghost:hover::after {
-    transform: scaleX(1);
   }
 }
 
